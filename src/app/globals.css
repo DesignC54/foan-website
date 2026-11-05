@@ -427,6 +427,91 @@
   }
 }
 
+/* Stat bands (About): dark cards, one lit white. The lit card is the first
+   one, or whichever the pointer is over. */
+.stat-card {
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease;
+}
+.stat-card .stat-num {
+  background: rgb(255 255 255 / 0.15);
+  color: var(--text-accent);
+  transition: inherit;
+}
+.stat-card .stat-title {
+  color: var(--text-primary);
+}
+.stat-card .stat-body {
+  color: var(--text-secondary);
+}
+.stat-band > :first-child .stat-card,
+.stat-band .stat-card:hover {
+  background: #fff;
+}
+.stat-band:has(.stat-card:hover) > :first-child .stat-card:not(:hover) {
+  background: transparent;
+}
+.stat-band > :first-child .stat-card .stat-num,
+.stat-band .stat-card:hover .stat-num {
+  background: #fff;
+  color: var(--color-afrixx-orange);
+  box-shadow: 0 8px 18px rgb(0 0 0 / 0.12);
+}
+.stat-band > :first-child .stat-card .stat-title,
+.stat-band .stat-card:hover .stat-title {
+  color: #2f2f2f;
+}
+.stat-band > :first-child .stat-card .stat-body,
+.stat-band .stat-card:hover .stat-body {
+  color: rgb(0 0 0 / 0.8);
+}
+.stat-band:has(.stat-card:hover)
+  > :first-child
+  .stat-card:not(:hover)
+  .stat-num {
+  background: rgb(255 255 255 / 0.15);
+  color: var(--text-accent);
+  box-shadow: none;
+}
+.stat-band:has(.stat-card:hover)
+  > :first-child
+  .stat-card:not(:hover)
+  .stat-title {
+  color: var(--text-primary);
+}
+.stat-band:has(.stat-card:hover)
+  > :first-child
+  .stat-card:not(:hover)
+  .stat-body {
+  color: var(--text-secondary);
+}
+[data-theme="light"] .stat-card .stat-num {
+  background: rgb(0 0 0 / 0.08);
+}
+/* Divider between cards: a fading line with a yellow centre */
+.stat-divider {
+  flex-shrink: 0;
+  align-self: center;
+  height: 1px;
+  width: calc(100% - 56px);
+  background: linear-gradient(90deg, transparent, #fcde00 50%, transparent);
+  opacity: 0.6;
+}
+@media (width >= 64rem) {
+  .stat-divider {
+    width: 1px;
+    height: 209px;
+    background: linear-gradient(180deg, transparent, #fcde00 50%, transparent);
+  }
+}
+
+/* Outlined value numbers (About › Six values) */
+.outline-number {
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgb(233 254 0 / 0.45);
+}
+
 /* Horizontal scrollers (story cards) without a visible scrollbar. */
 @utility no-scrollbar {
   scrollbar-width: none;
