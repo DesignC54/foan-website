@@ -182,7 +182,7 @@ export function FiveHouses() {
 
           {/* The other four houses */}
           <ul
-            data-reveal-group
+            data-reveal-group="zoom-in"
             className="grid grid-cols-1 gap-10 lg:grid-cols-2"
           >
             {order.map((k) => (

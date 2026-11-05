@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { MeshBackground } from "@/components/motion/mesh-background";
+import { PillarMotion } from "./pillar-motion";
 import { Carousel } from "@/components/ui/carousel";
 import { MaskIcon } from "@/components/ui/mask-icon";
 import { Tag } from "@/components/ui/tag";
@@ -93,7 +94,7 @@ function StoryCard({ story }: { story: Story }) {
             alt=""
             fill
             sizes="(min-width: 1024px) 640px, 362px"
-            className="object-cover"
+            className="intro-photo object-cover"
           />
           <div className="absolute inset-0 bg-black/12" />
         </>
@@ -151,29 +152,42 @@ export function Hero() {
       {/* Stage */}
       <div className="max-w-frame relative mx-auto flex w-full flex-col items-center gap-6 px-5 pt-6 lg:h-[612px] lg:gap-8 lg:px-[60px] lg:pt-8">
         {/* Animated wireframe terrain (replaces the static network lines) */}
-        <MeshBackground className="text-primary absolute top-0 left-1/2 h-[443px] w-screen max-w-[1600px] -translate-x-1/2 [mask-image:linear-gradient(to_bottom,transparent,#000_18%,#000_72%,transparent)] lg:top-5" />
-        {/* eslint-disable-next-line @next/next/no-img-element -- glow */}
-        <img
-          src="/images/home/hero-glow-m.svg"
-          alt=""
-          className="pointer-events-none absolute top-0 left-1/2 h-[300px] w-[520px] max-w-none -translate-x-1/2 lg:hidden"
-        />
-        {/* eslint-disable-next-line @next/next/no-img-element -- glow */}
-        <img
-          src="/images/home/hero-glow.svg"
-          alt=""
-          className="pointer-events-none absolute top-0 left-1/2 hidden h-[520px] w-[900px] max-w-none -translate-x-1/2 lg:block"
-        />
+        {/* Load sequence (CSS, see "Intro" in globals.css):
+            mesh + glow fade in → logo settles (zoom out) → text and button
+            rise → the four pillars glide onto the stage, then float. */}
+        <div
+          className="intro-fade pointer-events-none absolute inset-0"
+          style={{ "--d": "0ms", "--dur": "1600ms" } as React.CSSProperties}
+        >
+          <MeshBackground className="text-primary absolute top-0 left-1/2 h-[443px] w-screen max-w-[1600px] -translate-x-1/2 [mask-image:linear-gradient(to_bottom,transparent,#000_18%,#000_72%,transparent)] lg:top-5" />
+          {/* eslint-disable-next-line @next/next/no-img-element -- glow */}
+          <img
+            src="/images/home/hero-glow-m.svg"
+            alt=""
+            className="absolute top-0 left-1/2 h-[300px] w-[520px] max-w-none -translate-x-1/2 lg:hidden"
+          />
+          {/* eslint-disable-next-line @next/next/no-img-element -- glow */}
+          <img
+            src="/images/home/hero-glow.svg"
+            alt=""
+            className="absolute top-0 left-1/2 hidden h-[520px] w-[900px] max-w-none -translate-x-1/2 lg:block"
+          />
+        </div>
 
-        {/* Desktop pillars float around the logo */}
-        <div data-theme="dark" className="hidden lg:contents">
+        {/* Desktop pillars glide in from their side, then float */}
+        <div
+          data-theme="dark"
+          className="pointer-events-none absolute inset-0 hidden lg:block"
+        >
           {pillars.map((p, i) => (
-            <div
-              key={p.label}
-              className={`animate-float absolute ${p.pos}`}
-              style={{ animationDelay: `${i * -1.5}s` }}
-            >
-              <Hex label={p.label} shape={p.shape} size="lg" />
+            <div key={p.label} className={`absolute ${p.pos}`}>
+              <PillarMotion
+                from={i < 2 ? "left" : "right"}
+                delay={0.48 + i * 0.11}
+                floatOffset={i * 0.7}
+              >
+                <Hex label={p.label} shape={p.shape} size="lg" />
+              </PillarMotion>
             </div>
           ))}
         </div>
@@ -184,12 +198,12 @@ export function Hero() {
           alt="FOAN Group"
           width={565.163}
           height={290}
-          data-reveal
-          className="relative h-[159.5px] w-[310.84px] lg:h-[290px] lg:w-[565.163px]"
+          className="intro-zoom relative h-[159.5px] w-[310.84px] lg:h-[290px] lg:w-[565.163px]"
+          style={{ "--d": "150ms" } as React.CSSProperties}
         />
         <h1
-          data-reveal
-          className="type-body-xl text-primary relative w-full text-center lg:w-[640px]"
+          className="intro-up type-body-xl text-primary relative w-full text-center lg:w-[640px]"
+          style={{ "--d": "380ms" } as React.CSSProperties}
         >
           A media, technology and data company that gathers, verifies and
           interprets information about African markets — and builds the
@@ -197,8 +211,8 @@ export function Hero() {
         </h1>
         <Link
           href="/about/"
-          data-reveal
-          className="group bg-inverse type-label-button text-inverse-text relative flex items-center gap-4 rounded-full py-2 pr-2 pl-6"
+          style={{ "--d": "520ms" } as React.CSSProperties}
+          className="intro-up group bg-inverse type-label-button text-inverse-text relative flex items-center gap-4 rounded-full py-2 pr-2 pl-6"
         >
           Learn more
           <span className="bg-highlight grid size-8 place-items-center rounded-full text-black">
@@ -214,14 +228,19 @@ export function Hero() {
           data-theme="dark"
           className="relative flex w-full items-center justify-between lg:hidden"
         >
-          {pillars.map((p) => (
-            <Hex key={p.label} label={p.label} shape={p.shape} size="sm" />
+          {pillars.map((p, i) => (
+            <PillarMotion key={p.label} from="below" delay={0.48 + i * 0.09}>
+              <Hex label={p.label} shape={p.shape} size="sm" />
+            </PillarMotion>
           ))}
         </div>
       </div>
 
       {/* Stories: scroller with pagination (the third card peeks, as in Figma) */}
-      <div data-reveal className="max-w-frame mx-auto w-full">
+      <div
+        className="intro-up max-w-frame mx-auto w-full"
+        style={{ "--d": "800ms" } as React.CSSProperties}
+      >
         <Carousel label="Latest from the FOAN Newsroom">
           {stories.map((s) => (
             <StoryCard key={s.title} story={s} />

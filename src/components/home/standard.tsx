@@ -1,4 +1,5 @@
 import { Tag } from "@/components/ui/tag";
+import { ScrollWords } from "@/components/motion/scroll-words";
 
 // Figma: Home › Standard (2109:10274 desktop / 2109:9764 mobile).
 
@@ -26,16 +27,16 @@ export function Standard() {
       <div className="gap-section-gap relative flex flex-col items-center">
         <div data-reveal className="flex flex-col items-center gap-4 lg:gap-6">
           <Tag label="Standard" />
-          <h2 className="type-h2 text-primary text-center lg:w-[866.67px]">
-            One standard for how information is gathered, verified, produced and
-            distributed. So Africa’s story is told on its own terms
-          </h2>
+          <ScrollWords
+            className="type-h2 text-primary text-center lg:w-[866.67px]"
+            text="One standard for how information is gathered, verified, produced and distributed. So Africa’s story is told on its own terms"
+          />
         </div>
 
         {/* Hexagon steps: fixed dark shapes in both themes */}
         <ol
           data-theme="dark"
-          data-reveal-group
+          data-reveal-group="zoom-in"
           className="grid w-full grid-cols-2 gap-5 lg:grid-cols-4 lg:gap-10"
         >
           {steps.map((s) => (

@@ -67,13 +67,12 @@ function C54Thumb({ tone }: { tone: "navy" | "red" }) {
 export function WhereWeStand() {
   return (
     <section className="max-w-frame px-gutter py-section mx-auto w-full">
-      <div
-        data-reveal-group
-        className="flex flex-col gap-5 lg:grid lg:grid-cols-[866.67fr_413.33fr] lg:gap-10"
-      >
+      <div className="flex flex-col gap-5 lg:grid lg:grid-cols-[866.67fr_413.33fr] lg:gap-10">
         {/* Feature card */}
         <div
           data-theme="dark"
+          data-reveal
+          data-reveal-img
           className="relative flex min-h-[351px] flex-col justify-end gap-6 overflow-clip rounded-sm p-7 lg:h-[880px] lg:gap-10 lg:p-[52px]"
         >
           <Image
@@ -102,7 +101,7 @@ export function WhereWeStand() {
         </div>
 
         {/* Milestones */}
-        <ol className="flex flex-col gap-5">
+        <ol data-reveal-group="right" className="flex flex-col gap-5">
           {milestones.map((m) => (
             <li
               key={m.title}

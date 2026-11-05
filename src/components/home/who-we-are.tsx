@@ -3,6 +3,8 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { MaskIcon } from "@/components/ui/mask-icon";
 import { Tag } from "@/components/ui/tag";
+import { CountUp } from "@/components/motion/count-up";
+import { ScrollWords } from "@/components/motion/scroll-words";
 
 // Figma: Home › Who we are (2109:9996 desktop / 2109:9486 mobile).
 // Desktop columns are 300 / 526.67 / 413.33 of 1320, kept as fractions so
@@ -40,7 +42,10 @@ function StatCard({
           src={`/images/home/${stat.icon}.svg`}
           className="text-primary size-11"
         />
-        <p className="type-stat text-accent-text">{stat.value}</p>
+        <CountUp
+          to={Number(stat.value)}
+          className="type-stat text-accent-text"
+        />
       </div>
       <div className="flex flex-col gap-5">
         <p className="type-h4 text-primary">{stat.title}</p>
@@ -55,10 +60,10 @@ export function WhoWeAre() {
     <section className="max-w-frame gap-section-gap px-gutter py-section mx-auto flex w-full flex-col">
       <div data-reveal className="flex flex-col gap-4 lg:gap-6">
         <Tag label="Who we are" />
-        <h2 className="type-h2 text-primary lg:max-w-[1206.67px]">
-          FOAN Group builds and operates the companies that carry Africa’s news,
-          data, stories and streams
-        </h2>
+        <ScrollWords
+          className="type-h2 text-primary lg:max-w-[1206.67px]"
+          text="FOAN Group builds and operates the companies that carry Africa’s news, data, stories and streams"
+        />
       </div>
 
       <div
@@ -104,6 +109,7 @@ export function WhoWeAre() {
         {/* Col / 5: photo with glass stat card */}
         <div
           data-theme="dark"
+          data-reveal-img
           className="relative flex h-[480px] flex-col justify-end overflow-clip rounded-sm p-6 lg:h-[735px]"
         >
           <Image
