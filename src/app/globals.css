@@ -1,26 +1,383 @@
 @import "tailwindcss";
 
+/*
+ * FOAN design tokens — generated from the Figma file
+ * "Foan Group Website (Copy)" (XPx3XUHdNPXmp1iusZEhi3), Design System page.
+ *
+ * Figma collection → CSS:
+ *   Primitives            → --color-<ramp>-<step>        (@theme, raw values)
+ *   Color   (Dark/Light)  → --bg-*, --text-*, --border-* (:root = Dark, [data-theme=light] = Light)
+ *   Spacing               → Tailwind's default 4px scale already matches space/4…80 (p-1 = 4px … p-20 = 80px)
+ *   Layout  (Desktop/Mob) → --layout-*                   (Mobile by default, Desktop from lg = 1024px)
+ *   Typography (Desk/Mob) → --size-*                     (same breakpoint)
+ *
+ * Change a value in Figma? Update it here too. Names mirror Figma so they're easy to find.
+ */
+
+/* ------------------------------------------------------------------ */
+/* 1. Primitives + Tailwind theme                                      */
+/* ------------------------------------------------------------------ */
+
+@theme {
+  /* Reset Tailwind's default palette: only FOAN colours are available. */
+  --color-*: initial;
+
+  --color-lime-50: #fdffeb;
+  --color-lime-100: #fbffd6;
+  --color-lime-200: #f8ffa8;
+  --color-lime-300: #f3fe75;
+  --color-lime-400: #eefe38;
+  --color-lime-500: #e9fe00;
+  --color-lime-600: #c4d500;
+  --color-lime-700: #9ead00;
+  --color-lime-800: #798400;
+  --color-lime-900: #545b00;
+
+  --color-olive-50: #f3f4ef;
+  --color-olive-100: #e7e8de;
+  --color-olive-200: #cbcfb9;
+  --color-olive-300: #adb290;
+  --color-olive-400: #88905f;
+  --color-olive-500: #677132;
+  --color-olive-600: #575f2a;
+  --color-olive-700: #464d22;
+  --color-olive-800: #363b1a;
+  --color-olive-900: #252912;
+
+  --color-yellow-50: #fffceb;
+  --color-yellow-100: #fffad6;
+  --color-yellow-200: #fef4a8;
+  --color-yellow-300: #fded75;
+  --color-yellow-400: #fde538;
+  --color-yellow-500: #fcde00;
+  --color-yellow-600: #d4ba00;
+  --color-yellow-700: #ab9700;
+  --color-yellow-800: #837300;
+  --color-yellow-900: #5b5000;
+
+  --color-neutral-0: #ffffff;
+  --color-neutral-50: #f7f8f0;
+  --color-neutral-100: #edeee6;
+  --color-neutral-200: #d6d6d6;
+  --color-neutral-300: #a5a5a5;
+  --color-neutral-400: #868686;
+  --color-neutral-500: #6b6d66;
+  --color-neutral-700: #272727;
+  --color-neutral-800: #141414;
+  --color-neutral-850: #111111;
+  --color-neutral-900: #0e0f0c;
+  --color-neutral-950: #0a0a0a;
+  --color-neutral-1000: #000000;
+
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-transparent: transparent;
+  --color-current: currentColor;
+
+  /* House (company) colours */
+  --color-c54-red: #e3262e;
+  --color-c54-navy: #0e2a7a;
+  --color-afrixx-orange: #ff7a04;
+  --color-f1-purple: #3b0b8c;
+  --color-f1-magenta: #c026d3;
+
+  /* Semantic colours → utilities like bg-page, text-primary, border-subtle.
+     They point at the themed variables below, so they flip with data-theme. */
+  --color-page: var(--bg-page);
+  --color-surface: var(--bg-surface);
+  --color-surface-raised: var(--bg-surface-raised);
+  --color-inverse: var(--bg-inverse);
+  --color-footer: var(--bg-footer);
+  --color-glass: var(--bg-glass);
+  --color-accent: var(--bg-accent);
+  --color-highlight: var(--bg-highlight);
+  --color-disabled: var(--bg-disabled);
+
+  --color-primary: var(--text-primary);
+  --color-secondary: var(--text-secondary);
+  --color-tertiary: var(--text-tertiary);
+  --color-accent-text: var(--text-accent);
+  --color-on-accent: var(--text-on-accent);
+  --color-inverse-text: var(--text-inverse);
+
+  --color-subtle: var(--border-subtle);
+  --color-default: var(--border-default);
+  --color-strong: var(--border-strong);
+
+  /* Fonts (set by next/font in layout.tsx) */
+  --font-display: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+  --font-ui: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-display);
+
+  /* Radius (Spacing collection: radius/*) → rounded-xs … rounded-full */
+  --radius-*: initial;
+  --radius-xs: 4px;
+  --radius-sm: 14px;
+  --radius-md: 22px;
+  --radius-lg: 28px;
+  --radius-full: 999px;
+
+  /* Elevation (effect styles) → shadow-glass, shadow-tag */
+  --shadow-glass: 0 8px 24px 0 rgb(13 15 8 / 0.1);
+  --shadow-tag: 0 8px 4px 0 rgb(0 0 0 / 0.15);
+
+  /* One breakpoint switches Figma's Mobile mode to Desktop mode. */
+  --breakpoint-lg: 64rem; /* 1024px */
+  --breakpoint-frame: 90rem; /* 1440px: the desktop frame width */
+}
+
+/* ------------------------------------------------------------------ */
+/* 2. Color collection: Dark (default) and Light                       */
+/* ------------------------------------------------------------------ */
+
+:root,
+[data-theme="dark"] {
+  --bg-page: var(--color-neutral-1000);
+  --bg-surface: var(--color-neutral-800);
+  --bg-surface-raised: var(--color-neutral-700);
+  --bg-inverse: var(--color-neutral-0);
+  --bg-footer: var(--color-neutral-900);
+  --bg-glass: rgb(255 255 255 / 0.2);
+  --bg-accent: var(--color-lime-500);
+  --bg-highlight: var(--color-yellow-500);
+  --bg-disabled: var(--color-neutral-300);
+
+  --text-primary: var(--color-neutral-0);
+  --text-secondary: rgb(255 255 255 / 0.72);
+  --text-tertiary: rgb(255 255 255 / 0.4);
+  --text-accent: var(--color-lime-500);
+  --text-on-accent: var(--color-neutral-1000);
+  --text-inverse: var(--color-neutral-950);
+
+  --border-subtle: rgb(255 255 255 / 0.08);
+  --border-default: rgb(255 255 255 / 0.1);
+  --border-strong: rgb(255 255 255 / 0.24);
+
+  color-scheme: dark;
+}
+
+[data-theme="light"] {
+  --bg-page: var(--color-neutral-0);
+  --bg-surface: var(--color-neutral-50);
+  --bg-surface-raised: var(--color-neutral-100);
+  --bg-inverse: var(--color-neutral-900);
+  --bg-footer: var(--color-neutral-50);
+  --bg-glass: rgb(0 0 0 / 0.07);
+  --bg-accent: var(--color-lime-500);
+  --bg-highlight: var(--color-yellow-500);
+  --bg-disabled: var(--color-neutral-200);
+
+  --text-primary: var(--color-neutral-950);
+  --text-secondary: rgb(10 10 10 / 0.65);
+  --text-tertiary: var(--color-neutral-500);
+  --text-accent: var(--color-olive-500);
+  --text-on-accent: var(--color-neutral-1000);
+  --text-inverse: var(--color-neutral-0);
+
+  --border-subtle: rgb(0 0 0 / 0.07);
+  --border-default: rgb(0 0 0 / 0.12);
+  --border-strong: var(--color-neutral-900);
+
+  color-scheme: light;
+}
+
+/* ------------------------------------------------------------------ */
+/* 3. Layout + Typography collections: Mobile, then Desktop from lg    */
+/* ------------------------------------------------------------------ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Layout */
+  --layout-frame-width: 402px;
+  --layout-gutter: 20px;
+  --layout-section-padding-y: 20px;
+  --layout-section-gap: 20px;
+
+  /* Type sizes */
+  --size-display-xl: 64px;
+  --size-display: 44px;
+  --size-h1: 36px;
+  --size-h2: 24px;
+  --size-h3: 22px;
+  --size-h4: 20px;
+  --size-stat: 44px;
+  --size-lead: 18px;
+  --size-body-xl: 18px;
+  --size-body-l: 16px;
+  --size-body-m: 16px;
+  --size-body-s: 15px;
+  --size-label-button: 15px;
+  --size-label-tag: 16px;
+  --size-label-nav: 16px;
+  --size-label-small: 14px;
+  --size-label-overline: 12px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@media (width >= 64rem) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --layout-frame-width: 1440px;
+    --layout-gutter: 60px;
+    --layout-section-padding-y: 40px;
+    --layout-section-gap: 64px;
+
+    --size-display-xl: 150px;
+    --size-display: 76px;
+    --size-h1: 64px;
+    --size-h2: 40px;
+    --size-h3: 32px;
+    --size-h4: 24px;
+    --size-stat: 56px;
+    --size-lead: 22px;
+    --size-body-xl: 22px;
+    --size-body-l: 18px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Layout tokens as utilities: px-gutter, py-section, gap-section, max-w-frame */
+@theme inline {
+  --spacing-gutter: var(--layout-gutter);
+  --spacing-section: var(--layout-section-padding-y);
+  --spacing-section-gap: var(--layout-section-gap);
+  --container-frame: var(--layout-frame-width);
+}
+
+/* ------------------------------------------------------------------ */
+/* 4. Text styles (Figma text styles → one class each)                 */
+/* ------------------------------------------------------------------ */
+
+@utility type-display-xl {
+  font-family: var(--font-ui);
+  font-weight: 800;
+  font-size: var(--size-display-xl);
+  line-height: 0.9;
+  letter-spacing: -0.06em;
+}
+@utility type-display {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--size-display);
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+}
+@utility type-h1 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--size-h1);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+@utility type-h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--size-h2);
+  line-height: 1.26;
+  letter-spacing: -0.01em;
+}
+@utility type-h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--size-h3);
+  line-height: 1.22;
+  letter-spacing: -0.01em;
+}
+@utility type-h4 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--size-h4);
+  line-height: 1.28;
+  letter-spacing: -0.01em;
+}
+@utility type-stat {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--size-stat);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+@utility type-lead {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--size-lead);
+  line-height: 1.32;
+  letter-spacing: -0.005em;
+}
+@utility type-body-xl {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--size-body-xl);
+  line-height: 1.4;
+}
+@utility type-body-l {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--size-body-l);
+  line-height: 1.5;
+}
+@utility type-body-m {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--size-body-m);
+  line-height: 1.5;
+}
+@utility type-body-s {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--size-body-s);
+  line-height: 1.5;
+}
+@utility type-label-small {
+  font-family: var(--font-ui);
+  font-weight: 400;
+  font-size: var(--size-label-small);
+  line-height: 1.4;
+}
+@utility type-label-button {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: var(--size-label-button);
+  line-height: 1.32;
+}
+@utility type-label-tag {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: var(--size-label-tag);
+  line-height: 1.32;
+  letter-spacing: 0.12em;
+}
+@utility type-label-nav {
+  font-family: var(--font-ui);
+  font-weight: 500;
+  font-size: var(--size-label-nav);
+  line-height: 1.32;
+}
+@utility type-label-overline {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: var(--size-label-overline);
+  line-height: 1.32;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Glass surface (Elevation/Glass + bg/glass), used by tags and panels */
+@utility glass {
+  background-color: var(--bg-glass);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* ------------------------------------------------------------------ */
+/* 5. Base                                                             */
+/* ------------------------------------------------------------------ */
+
+@layer base {
+  body {
+    background-color: var(--bg-page);
+    color: var(--text-primary);
+    font-family: var(--font-display);
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection {
+    background-color: var(--color-lime-500);
+    color: var(--color-neutral-1000);
+  }
 }
