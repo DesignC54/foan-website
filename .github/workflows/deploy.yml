@@ -1,0 +1,62 @@
+# Build the static site and upload it to Namecheap over FTPS.
+#
+# Where it goes:
+#   - page branches          → staging subdomain (preview to check against Figma)
+#   - main / Sanity publish  → staging until launch; the live site once SITE_LIVE = true
+#
+# Set these in GitHub → Settings → Secrets and variables → Actions:
+#   secrets:   FTP_SERVER, FTP_USERNAME, FTP_PASSWORD   (cPanel → FTP Accounts)
+#   variables: FTP_STAGING_DIR     e.g. staging.foangroup.com/
+#              FTP_PRODUCTION_DIR  e.g. public_html/
+#              SITE_LIVE           "true" only on launch day
+#
+# Sanity triggers a rebuild on publish via a webhook that calls
+# POST /repos/<owner>/<repo>/dispatches with {"event_type": "sanity-publish"}.
+
+name: Deploy
+
+on:
+  push:
+    branches: ["**"]
+  workflow_dispatch:
+  repository_dispatch:
+    types: [sanity-publish]
+
+# One upload at a time per target, so FTP transfers never overlap.
+concurrency:
+  group: deploy-${{ (github.ref == 'refs/heads/main' || github.event_name == 'repository_dispatch') && vars.SITE_LIVE == 'true' && 'production' || 'staging' }}
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      IS_PRODUCTION: ${{ (github.ref == 'refs/heads/main' || github.event_name == 'repository_dispatch') && vars.SITE_LIVE == 'true' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'repository_dispatch' && 'main' || github.ref }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run build
+
+      # Keep search engines off the staging copy.
+      - name: Block indexing on staging
+        if: env.IS_PRODUCTION != 'true'
+        run: printf "User-agent: *\nDisallow: /\n" > out/robots.txt
+
+      - name: Upload to Namecheap
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          local-dir: ./out/
+          server-dir: ${{ env.IS_PRODUCTION == 'true' && vars.FTP_PRODUCTION_DIR || vars.FTP_STAGING_DIR }}
