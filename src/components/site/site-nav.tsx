@@ -131,16 +131,13 @@ function ImpactPanel({ onNavigate }: { onNavigate: () => void }) {
         <p className="type-h3 relative text-white">Impact</p>
       </div>
       <ul className="flex w-[380px] flex-col gap-2">
-        {impactLinks.map((l, i) => (
+        {impactLinks.map((l) => (
           <li key={l.href}>
             <Link
               href={l.href}
               onClick={onNavigate}
               className="group bg-surface-raised hover:bg-accent focus-visible:bg-accent flex items-center gap-4 rounded-[20px] py-5 pr-5 pl-6 transition-colors"
             >
-              <span className="type-label-overline text-secondary group-hover:text-on-accent group-focus-visible:text-on-accent">
-                {String(i + 1).padStart(2, "0")}
-              </span>
               <span className="type-h3 text-primary group-hover:text-on-accent group-focus-visible:text-on-accent min-w-0 flex-1">
                 {l.label}
               </span>
