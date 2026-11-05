@@ -53,7 +53,7 @@ function StatCard({
 export function WhoWeAre() {
   return (
     <section className="max-w-frame gap-section-gap px-gutter py-section mx-auto flex w-full flex-col">
-      <div className="flex flex-col gap-4 lg:gap-6">
+      <div data-reveal className="flex flex-col gap-4 lg:gap-6">
         <Tag label="Who we are" />
         <h2 className="type-h2 text-primary lg:max-w-[1206.67px]">
           FOAN Group builds and operates the companies that carry Africa’s news,
@@ -61,7 +61,10 @@ export function WhoWeAre() {
         </h2>
       </div>
 
-      <div className="flex flex-col gap-5 lg:grid lg:grid-cols-[300fr_526.67fr_413.33fr] lg:gap-10">
+      <div
+        data-reveal-group
+        className="flex flex-col gap-5 lg:grid lg:grid-cols-[300fr_526.67fr_413.33fr] lg:gap-10"
+      >
         {/* Col / 3 */}
         <div className="flex flex-col gap-5 lg:gap-10">
           <StatCard stat={stats.hubs} className="bg-surface lg:p-9" />

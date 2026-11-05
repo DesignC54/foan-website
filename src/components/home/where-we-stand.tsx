@@ -67,7 +67,10 @@ function C54Thumb({ tone }: { tone: "navy" | "red" }) {
 export function WhereWeStand() {
   return (
     <section className="max-w-frame px-gutter py-section mx-auto w-full">
-      <div className="flex flex-col gap-5 lg:grid lg:grid-cols-[866.67fr_413.33fr] lg:gap-10">
+      <div
+        data-reveal-group
+        className="flex flex-col gap-5 lg:grid lg:grid-cols-[866.67fr_413.33fr] lg:gap-10"
+      >
         {/* Feature card */}
         <div
           data-theme="dark"

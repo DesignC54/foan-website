@@ -82,10 +82,16 @@ export function WhitePanel() {
       >
         {/* How we are built */}
         <div className="flex flex-col gap-8 px-5 pt-16 pb-12 lg:gap-16 lg:px-[60px] lg:py-10">
-          <h2 className="type-h1 whitespace-nowrap text-neutral-950">
+          <h2
+            data-reveal
+            className="type-h1 whitespace-nowrap text-neutral-950"
+          >
             How we are <span className="text-olive-500">built</span>
           </h2>
-          <div className="flex flex-col gap-5 lg:grid lg:grid-cols-[753.33fr_526.67fr] lg:gap-10">
+          <div
+            data-reveal-group
+            className="flex flex-col gap-5 lg:grid lg:grid-cols-[753.33fr_526.67fr] lg:gap-10"
+          >
             <div className="flex flex-col gap-5 lg:gap-10">
               {built.map((b) => (
                 <Link
@@ -176,7 +182,10 @@ export function WhitePanel() {
                 "linear-gradient(180.42deg, #fff 32.58%, rgba(255,255,255,0.92) 63.54%, rgba(255,255,255,0) 99.98%)",
             }}
           />
-          <p className="type-display-xl relative text-center text-neutral-900">
+          <p
+            data-reveal
+            className="type-display-xl relative text-center text-neutral-900"
+          >
             Let’s build
             <br />
             <span className="text-olive-500">the signal.</span>

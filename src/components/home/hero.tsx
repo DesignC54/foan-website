@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Carousel } from "@/components/ui/carousel";
 import { MaskIcon } from "@/components/ui/mask-icon";
 import { Tag } from "@/components/ui/tag";
 
@@ -175,8 +176,12 @@ export function Hero() {
 
         {/* Desktop pillars float around the logo */}
         <div data-theme="dark" className="hidden lg:contents">
-          {pillars.map((p) => (
-            <div key={p.label} className={`absolute ${p.pos}`}>
+          {pillars.map((p, i) => (
+            <div
+              key={p.label}
+              className={`animate-float absolute ${p.pos}`}
+              style={{ animationDelay: `${i * -1.5}s` }}
+            >
               <Hex label={p.label} shape={p.shape} size="lg" />
             </div>
           ))}
@@ -188,15 +193,20 @@ export function Hero() {
           alt="FOAN Group"
           width={565.163}
           height={290}
+          data-reveal
           className="relative h-[159.5px] w-[310.84px] lg:h-[290px] lg:w-[565.163px]"
         />
-        <h1 className="type-body-xl text-primary relative w-full text-center lg:w-[640px]">
+        <h1
+          data-reveal
+          className="type-body-xl text-primary relative w-full text-center lg:w-[640px]"
+        >
           A media, technology and data company that gathers, verifies and
           interprets information about African markets — and builds the
           platforms that carry it.
         </h1>
         <Link
           href="/about/"
+          data-reveal
           className="group bg-inverse type-label-button text-inverse-text relative flex items-center gap-4 rounded-full py-2 pr-2 pl-6"
         >
           Learn more
@@ -219,13 +229,13 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Stories: horizontal scroller (the third card peeks, as in Figma) */}
-      <div className="max-w-frame mx-auto w-full">
-        <div className="no-scrollbar flex snap-x snap-mandatory scroll-px-5 gap-5 overflow-x-auto px-5 lg:scroll-px-[60px] lg:gap-10 lg:px-[60px]">
+      {/* Stories: scroller with pagination (the third card peeks, as in Figma) */}
+      <div data-reveal className="max-w-frame mx-auto w-full">
+        <Carousel label="Latest from the FOAN Newsroom">
           {stories.map((s) => (
             <StoryCard key={s.title} story={s} />
           ))}
-        </div>
+        </Carousel>
       </div>
     </section>
   );

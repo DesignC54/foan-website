@@ -133,8 +133,8 @@ export function FiveHouses() {
           className="pointer-events-none absolute top-0 left-0 h-[calc(100%+326px)] w-[calc(100%+32px)] max-w-none"
         />
 
-        <div className="relative flex flex-col gap-4 lg:gap-6">
-          <Tag label="Everything at a glance" />
+        <div data-reveal className="relative flex flex-col gap-4 lg:gap-6">
+          <Tag label="Everything at a glance" tone="dark" />
           <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
             <h2 className="type-h1 text-neutral-950">
               Five houses, <span className="text-olive-500">one group</span>
@@ -181,7 +181,10 @@ export function FiveHouses() {
           </SmartLink>
 
           {/* The other four houses */}
-          <ul className="grid grid-cols-1 gap-10 lg:grid-cols-2">
+          <ul
+            data-reveal-group
+            className="grid grid-cols-1 gap-10 lg:grid-cols-2"
+          >
             {order.map((k) => (
               <li key={k}>
                 <SmartLink href={href(k)} className="group flex flex-col gap-5">

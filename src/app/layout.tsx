@@ -3,6 +3,8 @@ import { Outfit, Manrope } from "next/font/google";
 import { SiteNav } from "@/components/site/site-nav";
 import { SiteFooter } from "@/components/site/site-footer";
 import { ThemeScript } from "@/components/site/theme-toggle";
+import { ScrollReveal } from "@/components/motion/scroll-reveal";
+import { SmoothScroll } from "@/components/motion/smooth-scroll";
 import "./globals.css";
 
 // next/font downloads these at build time and serves them from our own domain.
@@ -44,6 +46,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <SiteNav />
         <main className="flex-1 overflow-x-clip">{children}</main>
         <SiteFooter />
+        <ScrollReveal />
+        <SmoothScroll />
       </body>
     </html>
   );

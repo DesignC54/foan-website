@@ -24,17 +24,18 @@ export function Standard() {
       />
 
       <div className="gap-section-gap relative flex flex-col items-center">
-        <div className="flex flex-col items-center gap-4 lg:gap-6">
+        <div data-reveal className="flex flex-col items-center gap-4 lg:gap-6">
           <Tag label="Standard" />
           <h2 className="type-h2 text-primary text-center lg:w-[866.67px]">
-            One standard for how information is gathered, verified, produced
-            and. So Africa’s story is told on its own terms
+            One standard for how information is gathered, verified, produced and
+            distributed. So Africa’s story is told on its own terms
           </h2>
         </div>
 
         {/* Hexagon steps: fixed dark shapes in both themes */}
         <ol
           data-theme="dark"
+          data-reveal-group
           className="grid w-full grid-cols-2 gap-5 lg:grid-cols-4 lg:gap-10"
         >
           {steps.map((s) => (

@@ -2,12 +2,15 @@ import Image from "next/image";
 import { MaskIcon } from "@/components/ui/mask-icon";
 
 // Figma: Home › Stream AfrixxStreams (2109:10197 desktop / 2109:9687 mobile).
-// Copy is verbatim from the design (including its typos, see the build notes).
+// Copy from the design, with its typos corrected (transactional, subscription).
 
 export function StreamAfrixx() {
   return (
     <section className="max-w-frame px-gutter py-section mx-auto w-full">
-      <div className="flex flex-col gap-5 lg:grid lg:grid-cols-2 lg:items-center lg:gap-10">
+      <div
+        data-reveal-group
+        className="flex flex-col gap-5 lg:grid lg:grid-cols-2 lg:items-center lg:gap-10"
+      >
         <div className="flex flex-col gap-6 lg:gap-8">
           <div className="flex flex-col gap-5">
             <h2 className="type-h1 text-primary">
@@ -17,10 +20,10 @@ export function StreamAfrixx() {
               </span>
             </h2>
             <p className="type-body-xl light:text-secondary text-neutral-200">
-              Premium subscription, advertising supported and transanctional
+              Premium subscription, advertising supported and transactional
               streaming for African and diaspora audiences, Access is priced at
               several points, because a platform in this market that depends on
-              subscriptioin alone bets against the observable economics.
+              subscription alone bets against the observable economics.
             </p>
           </div>
           <span

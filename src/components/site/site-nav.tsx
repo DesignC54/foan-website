@@ -188,6 +188,7 @@ function MobileMenu({ path, onClose }: { path: string; onClose: () => void }) {
       role="dialog"
       aria-modal="true"
       aria-label="Site menu"
+      data-lenis-prevent
       className="bg-page nav:hidden fixed inset-0 z-[60] overflow-y-auto overscroll-contain"
     >
       <div className="relative flex min-h-full flex-col gap-5 overflow-clip pb-8">
