@@ -53,6 +53,10 @@ export default function NotFound() {
       <h1 className="type-h1 text-primary lg:type-display text-center whitespace-nowrap">
         Not <span className="text-accent-text">Found</span>
       </h1>
+      <p className="type-body-l text-secondary max-w-[520px] text-center">
+        The page you&rsquo;re looking for may have been moved, renamed or
+        removed. Check the address, or head back to the homepage.
+      </p>
       <div className="flex items-center gap-3 lg:pt-4">
         <Button label="Home" href="/" variant="lime" />
         <Button label="Contact Us" href="/contact/" variant="white" />
