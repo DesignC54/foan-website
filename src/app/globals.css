@@ -131,7 +131,9 @@
 
 /* light: — for the few fixed (primitive) colours that the Light designs swap,
    e.g. text-white/60 light:text-secondary. Semantic tokens flip on their own. */
-@custom-variant light (&:where([data-theme="light"], [data-theme="light"] *));
+/* Matches inside a Light page but not inside a section pinned to Dark
+   (data-theme="dark" on a media/brand surface). */
+@custom-variant light (&:where([data-theme="light"], [data-theme="light"] *):not(:where([data-theme="dark"], [data-theme="dark"] *)));
 
 /* ------------------------------------------------------------------ */
 /* 2. Color collection: Dark (default) and Light                       */
@@ -385,7 +387,7 @@
 /* Neutral arrow/close badges are dark circles in the Figma files.
    In Light mode they invert to a light circle with a dark glyph. */
 @utility badge-invert {
-  [data-theme="light"] & {
+  &:where([data-theme="light"] *):not(:where([data-theme="dark"] *)) {
     filter: invert(1);
   }
 }

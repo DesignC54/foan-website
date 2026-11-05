@@ -15,7 +15,12 @@ export type ButtonVariant =
 const styles: Record<ButtonVariant, { box: string; arrow: string }> = {
   lime: { box: "bg-lime-500 text-neutral-900", arrow: "btn-arrow-dark" },
   yellow: { box: "bg-yellow-500 text-black", arrow: "btn-arrow-yellow" },
-  white: { box: "bg-white text-neutral-900", arrow: "btn-arrow-white" },
+  // On a Light page a white pill vanishes, so it gets the Outline look
+  // (drawn inside, so the size doesn't change between themes).
+  white: {
+    box: "bg-white text-neutral-900 light:shadow-[inset_0_0_0_1.5px_#0e0f0c]",
+    arrow: "btn-arrow-white",
+  },
   dark: { box: "bg-neutral-900 text-white", arrow: "btn-arrow-lime" },
   outline: {
     box: "border-[1.5px] border-neutral-900 bg-white text-neutral-900",
