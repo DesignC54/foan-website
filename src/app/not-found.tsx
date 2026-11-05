@@ -49,7 +49,6 @@ function Illustration() {
 export default function NotFound() {
   return (
     <section className="gap-section-gap px-gutter nav:pt-[calc(72px+var(--layout-section-padding-y))] flex flex-col items-center overflow-clip pt-[calc(64px+var(--layout-section-padding-y))] pb-[calc(var(--layout-section-padding-y)+48px)] lg:gap-6 lg:pb-[calc(var(--layout-section-padding-y)+80px)]">
-      <Illustration />
       <Tag label="404" />
       <h1 className="type-h1 text-primary lg:type-display text-center whitespace-nowrap">
         Not <span className="text-accent-text">Found</span>
@@ -58,6 +57,8 @@ export default function NotFound() {
         <Button label="Home" href="/" variant="lime" />
         <Button label="Contact Us" href="/contact/" variant="white" />
       </div>
+      {/* Message and exits first, illustration after (UX: answer before decoration). */}
+      <Illustration />
     </section>
   );
 }
