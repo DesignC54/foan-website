@@ -1,0 +1,13 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="180" height="205" viewBox="0 0 180 205" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Rings" clip-path="url(#clip0_0_4)">
+<path id="Vector" d="M115.2 92.25C115.2 106.168 103.918 117.45 90 117.45C76.0824 117.45 64.8 106.168 64.8 92.25C64.8 78.3324 76.0824 67.05 90 67.05C103.918 67.05 115.2 78.3324 115.2 92.25Z" stroke="white" stroke-opacity="0.08"/>
+<path id="Vector_2" d="M140.4 92.25C140.4 120.085 117.835 142.65 90 142.65C62.1648 142.65 39.6 120.085 39.6 92.25C39.6 64.4148 62.1648 41.85 90 41.85C117.835 41.85 140.4 64.4148 140.4 92.25Z" stroke="white" stroke-opacity="0.08"/>
+<path id="Vector_3" d="M165.6 92.25C165.6 134.003 131.753 167.85 90 167.85C48.2473 167.85 14.4 134.003 14.4 92.25C14.4 50.4973 48.2473 16.65 90 16.65C131.753 16.65 165.6 50.4973 165.6 92.25Z" stroke="white" stroke-opacity="0.08"/>
+<path id="Vector_4" d="M190.8 92.25C190.8 147.92 145.67 193.05 90 193.05C34.3297 193.05 -10.8 147.92 -10.8 92.25C-10.8 36.5797 34.3297 -8.55 90 -8.55C145.67 -8.55 190.8 36.5797 190.8 92.25Z" stroke="white" stroke-opacity="0.08"/>
+</g>
+<defs>
+<clipPath id="clip0_0_4">
+<rect width="180" height="205" fill="white"/>
+</clipPath>
+</defs>
+</svg>

@@ -81,29 +81,6 @@
   --color-f1-purple: #3b0b8c;
   --color-f1-magenta: #c026d3;
 
-  /* Semantic colours → utilities like bg-page, text-primary, border-subtle.
-     They point at the themed variables below, so they flip with data-theme. */
-  --color-page: var(--bg-page);
-  --color-surface: var(--bg-surface);
-  --color-surface-raised: var(--bg-surface-raised);
-  --color-inverse: var(--bg-inverse);
-  --color-footer: var(--bg-footer);
-  --color-glass: var(--bg-glass);
-  --color-accent: var(--bg-accent);
-  --color-highlight: var(--bg-highlight);
-  --color-disabled: var(--bg-disabled);
-
-  --color-primary: var(--text-primary);
-  --color-secondary: var(--text-secondary);
-  --color-tertiary: var(--text-tertiary);
-  --color-accent-text: var(--text-accent);
-  --color-on-accent: var(--text-on-accent);
-  --color-inverse-text: var(--text-inverse);
-
-  --color-subtle: var(--border-subtle);
-  --color-default: var(--border-default);
-  --color-strong: var(--border-strong);
-
   /* Fonts (set by next/font in layout.tsx) */
   --font-display: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
   --font-ui: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
@@ -127,6 +104,32 @@
   /* The desktop nav (logo + 777px pill + actions) needs ~1180px. Below that
      the site uses the mobile nav with the menu button. */
   --breakpoint-nav: 75rem; /* 1200px */
+}
+
+/* Semantic colours → utilities like bg-page, text-primary, border-subtle.
+   `inline` makes each utility read var(--bg-page) etc. where it is used, so a
+   section with its own data-theme (pinned Dark/Light) gets its own values. */
+@theme inline {
+  --color-page: var(--bg-page);
+  --color-surface: var(--bg-surface);
+  --color-surface-raised: var(--bg-surface-raised);
+  --color-inverse: var(--bg-inverse);
+  --color-footer: var(--bg-footer);
+  --color-glass: var(--bg-glass);
+  --color-accent: var(--bg-accent);
+  --color-highlight: var(--bg-highlight);
+  --color-disabled: var(--bg-disabled);
+
+  --color-primary: var(--text-primary);
+  --color-secondary: var(--text-secondary);
+  --color-tertiary: var(--text-tertiary);
+  --color-accent-text: var(--text-accent);
+  --color-on-accent: var(--text-on-accent);
+  --color-inverse-text: var(--text-inverse);
+
+  --color-subtle: var(--border-subtle);
+  --color-default: var(--border-default);
+  --color-strong: var(--border-strong);
 }
 
 /* light: — for the few fixed (primitive) colours that the Light designs swap,
@@ -382,6 +385,14 @@
   background-color: currentColor;
   mask: var(--icon) center / 100% 100% no-repeat;
   -webkit-mask: var(--icon) center / 100% 100% no-repeat;
+}
+
+/* Horizontal scrollers (story cards) without a visible scrollbar. */
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 /* Neutral arrow/close badges are dark circles in the Figma files.

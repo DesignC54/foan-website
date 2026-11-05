@@ -1,0 +1,10 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="200" height="120" viewBox="0 0 200 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Pulse" clip-path="url(#clip0_0_90)">
+<path id="Vector" d="M0 60H40L52 26L70 94L88 4L106 96L120 60H200" stroke-width="3" stroke-linecap="round" stroke="black"/>
+</g>
+<defs>
+<clipPath id="clip0_0_90">
+<rect width="200" height="120" fill="white"/>
+</clipPath>
+</defs>
+</svg>

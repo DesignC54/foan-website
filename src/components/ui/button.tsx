@@ -42,6 +42,8 @@ type Props = {
   variant?: ButtonVariant;
   href?: string;
   className?: string;
+  /** Override the arrow badge when a design instance uses a different one. */
+  arrowSrc?: string;
 };
 
 export function Button({
@@ -49,13 +51,14 @@ export function Button({
   variant = "lime",
   href,
   className = "",
+  arrowSrc,
 }: Props) {
   const s = styles[variant];
   const isBack = variant === "back";
   const arrow = (
     // eslint-disable-next-line @next/next/no-img-element -- fixed-size SVG badge
     <img
-      src={`/images/site/${s.arrow}.svg`}
+      src={arrowSrc ?? `/images/site/${s.arrow}.svg`}
       alt=""
       width={32}
       height={32}

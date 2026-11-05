@@ -265,7 +265,7 @@ function MobileMenu({ path, onClose }: { path: string; onClose: () => void }) {
                             <SmartLink
                               href={h.href}
                               onClick={onClose}
-                              className="group hover:bg-surface-raised flex items-center gap-3.5 rounded-2xl py-2 pr-3 pl-2 transition-colors"
+                              className="group hover:bg-surface-raised flex items-center gap-3.5 rounded-[16px] py-2 pr-3 pl-2 transition-colors"
                             >
                               <HouseTile house={h.key} size="sm" />
                               <span className="flex min-w-0 flex-1 flex-col gap-0.5 whitespace-nowrap">
@@ -285,7 +285,7 @@ function MobileMenu({ path, onClose }: { path: string; onClose: () => void }) {
                             <Link
                               href={l.href}
                               onClick={onClose}
-                              className="group hover:bg-surface-raised flex items-center gap-3.5 rounded-2xl py-3 pr-3 pl-4 transition-colors"
+                              className="group hover:bg-surface-raised flex items-center gap-3.5 rounded-[16px] py-3 pr-3 pl-4 transition-colors"
                             >
                               <span
                                 className={`type-h4 group-hover:text-accent-text min-w-0 flex-1 ${path.startsWith(l.href) ? "text-accent-text" : "text-primary"}`}

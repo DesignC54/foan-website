@@ -1,0 +1,13 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="620" height="500" viewBox="0 0 620 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Rings" clip-path="url(#clip0_0_61)">
+<path id="Vector" d="M380 225C380 263.66 348.66 295 310 295C271.34 295 240 263.66 240 225C240 186.34 271.34 155 310 155C348.66 155 380 186.34 380 225Z" stroke="white" stroke-opacity="0.08"/>
+<path id="Vector_2" d="M450 225C450 302.32 387.32 365 310 365C232.68 365 170 302.32 170 225C170 147.68 232.68 85 310 85C387.32 85 450 147.68 450 225Z" stroke="white" stroke-opacity="0.08"/>
+<path id="Vector_3" d="M520 225C520 340.98 425.98 435 310 435C194.02 435 100 340.98 100 225C100 109.02 194.02 15 310 15C425.98 15 520 109.02 520 225Z" stroke="white" stroke-opacity="0.08"/>
+<path id="Vector_4" d="M590 225C590 379.64 464.64 505 310 505C155.36 505 30 379.64 30 225C30 70.3603 155.36 -55 310 -55C464.64 -55 590 70.3603 590 225Z" stroke="white" stroke-opacity="0.08"/>
+</g>
+<defs>
+<clipPath id="clip0_0_61">
+<rect width="620" height="500" fill="white"/>
+</clipPath>
+</defs>
+</svg>
