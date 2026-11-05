@@ -78,7 +78,7 @@ function Semantic() {
 
 export default function TokenPreview() {
   return (
-    <main className="max-w-frame gap-section-gap px-gutter py-section mx-auto grid">
+    <main className="max-w-frame gap-section-gap px-gutter pb-section mx-auto grid pt-32">
       <header className="grid gap-2">
         <span className="type-label-overline text-accent-text">
           Design tokens · preview

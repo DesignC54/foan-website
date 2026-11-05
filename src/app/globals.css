@@ -124,7 +124,14 @@
   /* One breakpoint switches Figma's Mobile mode to Desktop mode. */
   --breakpoint-lg: 64rem; /* 1024px */
   --breakpoint-frame: 90rem; /* 1440px: the desktop frame width */
+  /* The desktop nav (logo + 777px pill + actions) needs ~1180px. Below that
+     the site uses the mobile nav with the menu button. */
+  --breakpoint-nav: 75rem; /* 1200px */
 }
+
+/* light: — for the few fixed (primitive) colours that the Light designs swap,
+   e.g. text-white/60 light:text-secondary. Semantic tokens flip on their own. */
+@custom-variant light (&:where([data-theme="light"], [data-theme="light"] *));
 
 /* ------------------------------------------------------------------ */
 /* 2. Color collection: Dark (default) and Light                       */
@@ -363,6 +370,24 @@
   background-color: var(--bg-glass);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+}
+
+/* Single-colour Figma icons, painted with the current text colour so they
+   follow the theme. Set the file with style={{ "--icon": "url(...)" }}. */
+@utility icon {
+  display: inline-block;
+  flex-shrink: 0;
+  background-color: currentColor;
+  mask: var(--icon) center / 100% 100% no-repeat;
+  -webkit-mask: var(--icon) center / 100% 100% no-repeat;
+}
+
+/* Neutral arrow/close badges are dark circles in the Figma files.
+   In Light mode they invert to a light circle with a dark glyph. */
+@utility badge-invert {
+  [data-theme="light"] & {
+    filter: invert(1);
+  }
 }
 
 /* ------------------------------------------------------------------ */

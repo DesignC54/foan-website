@@ -1,0 +1,6 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Arrow">
+<rect width="32" height="32" rx="16" fill="#E9FE00"/>
+<path id="Arrow up-right" d="M10.24 21.76L21.76 10.24M21.76 18.6182V10.24H13.3818" stroke-width="1.30909" stroke-linecap="round" stroke-linejoin="round" stroke="black"/>
+</g>
+</svg>
