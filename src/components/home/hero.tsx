@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { MeshBackground } from "@/components/motion/mesh-background";
 import { Carousel } from "@/components/ui/carousel";
 import { MaskIcon } from "@/components/ui/mask-icon";
 import { Tag } from "@/components/ui/tag";
@@ -149,18 +150,8 @@ export function Hero() {
     <section className="gap-section-gap pb-section nav:pt-[156px] flex flex-col pt-[84px] lg:gap-[60px]">
       {/* Stage */}
       <div className="max-w-frame relative mx-auto flex w-full flex-col items-center gap-6 px-5 pt-6 lg:h-[612px] lg:gap-8 lg:px-[60px] lg:pt-8">
-        {/* eslint-disable-next-line @next/next/no-img-element -- network lines */}
-        <img
-          src="/images/home/hero-network-m.svg"
-          alt=""
-          className="pointer-events-none absolute top-0 -right-[6.53%] -left-[6.53%] h-[443px] w-[113.06%] max-w-none lg:hidden"
-        />
-        {/* eslint-disable-next-line @next/next/no-img-element -- network lines */}
-        <img
-          src="/images/home/hero-network.svg"
-          alt=""
-          className="pointer-events-none absolute top-5 -left-[8.33%] hidden h-[443px] w-[113.05%] max-w-none lg:block"
-        />
+        {/* Animated wireframe terrain (replaces the static network lines) */}
+        <MeshBackground className="text-primary absolute top-0 left-1/2 h-[443px] w-screen max-w-[1600px] -translate-x-1/2 [mask-image:linear-gradient(to_bottom,transparent,#000_18%,#000_72%,transparent)] lg:top-5" />
         {/* eslint-disable-next-line @next/next/no-img-element -- glow */}
         <img
           src="/images/home/hero-glow-m.svg"

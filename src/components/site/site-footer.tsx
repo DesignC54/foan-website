@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { CSSProperties } from "react";
 import { footerColumns, legalLinks, socialLinks } from "@/lib/site";
+import { MeshBackground } from "@/components/motion/mesh-background";
 import { SmartLink } from "@/components/ui/smart-link";
 
 // Figma: Site / Footer (2163:166). Device=Desktop from lg (1024px), Mobile below.
@@ -87,23 +88,16 @@ export function SiteFooter() {
         </div>
       </div>
 
-      {/* Wordmark */}
-      <div className="hidden h-[392px] w-[1440px] max-w-none shrink-0 lg:block">
-        {/* eslint-disable-next-line @next/next/no-img-element -- full-bleed SVG artwork */}
-        <img
-          src="/images/site/footer-wordmark.svg"
-          alt=""
-          width={1440}
-          height={392}
-          className="size-full"
-        />
-      </div>
-      <div className="relative flex h-60 w-full items-start justify-center overflow-clip bg-neutral-900 pt-4 lg:hidden">
-        {/* eslint-disable-next-line @next/next/no-img-element -- decorative network */}
-        <img
-          src="/images/site/footer-network-mobile.svg"
-          alt=""
-          className="absolute top-[19.81px] left-1/2 h-[443px] w-[1628px] max-w-none -translate-x-1/2"
+      {/* Wordmark band: live wireframe mesh + FOAN logo, dark in both themes.
+          Mobile sits inside the gutters; desktop is the full 1440 band. */}
+      <div className="relative flex h-60 w-full items-start justify-center overflow-clip bg-neutral-900 pt-4 lg:h-[392px] lg:w-[1440px] lg:max-w-none lg:shrink-0 lg:pt-[26px]">
+        <MeshBackground
+          className="absolute inset-x-0 top-5 h-[calc(100%-20px)] w-full text-white"
+          cell={72}
+          rows={8}
+          amplitude={24}
+          opacity={[0.12, 0.34]}
+          seed={21}
         />
         {/* eslint-disable-next-line @next/next/no-img-element -- wordmark artwork */}
         <img
@@ -111,10 +105,10 @@ export function SiteFooter() {
           alt=""
           width={339.6}
           height={203.4}
-          className="relative h-[203.4px] w-[339.6px] max-w-none"
+          className="relative h-[203.4px] w-[339.6px] max-w-none lg:h-[332.2px] lg:w-[554.6px]"
         />
         <div
-          className="absolute inset-y-0 right-[-24.58%] left-[-23.19%]"
+          className="pointer-events-none absolute inset-y-0 right-[-24.58%] left-[-23.19%]"
           style={{
             backgroundImage:
               "linear-gradient(203.48deg, #0e0f0c 3.6%, rgba(14,15,12,0.52) 31.18%, #0e0f0c 68.69%)",
