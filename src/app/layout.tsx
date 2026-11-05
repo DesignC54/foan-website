@@ -5,6 +5,7 @@ import { SiteFooter } from "@/components/site/site-footer";
 import { ThemeScript } from "@/components/site/theme-toggle";
 import { ScrollReveal } from "@/components/motion/scroll-reveal";
 import { SmoothScroll } from "@/components/motion/smooth-scroll";
+import { CursorTrail } from "@/components/motion/cursor-trail";
 import "./globals.css";
 
 // next/font downloads these at build time and serves them from our own domain.
@@ -48,6 +49,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <SiteFooter />
         <ScrollReveal />
         <SmoothScroll />
+        <CursorTrail />
       </body>
     </html>
   );
