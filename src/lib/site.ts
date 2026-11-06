@@ -116,11 +116,10 @@ export const footerColumns = [
   },
 ];
 
-// The live site has no legal pages yet ("#"), so these render as text.
 export const legalLinks = [
-  "Privacy Policy",
-  "Terms of Service",
-  "Cookie Policy",
+  { label: "Privacy Policy", href: "/privacy-policy/" },
+  { label: "Terms of Service", href: "/terms-of-service/" },
+  { label: "Cookie Policy", href: "/cookie-policy/" },
 ];
 
 export const isExternal = (href: string) => /^(https?:|mailto:)/.test(href);

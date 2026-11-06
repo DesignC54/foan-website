@@ -4,6 +4,9 @@ import { MaskIcon } from "@/components/ui/mask-icon";
 import { Lime, PageHero } from "@/components/site/page-hero";
 import { getResources } from "@/lib/cms";
 
+// Refresh from Sanity at most once a minute after a publish.
+export const revalidate = 60;
+
 export const metadata: Metadata = {
   title: "Resources",
   description: "Download our latest documents, reports, and other materials.",

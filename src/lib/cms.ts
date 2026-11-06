@@ -8,6 +8,7 @@ import * as local from "./content";
 import * as localMedia from "./media";
 import type { Block, Post } from "./posts";
 import type { GalleryItem, VideoTour } from "./media";
+import { legalPages, type LegalBlock, type LegalPage } from "./legal";
 
 // Project IDs are public. Set NEXT_PUBLIC_SANITY_PROJECT_ID="" to build from
 // the local files instead.
@@ -170,4 +171,49 @@ export async function getResources(): Promise<local.Resource[]> {
   return client.fetch(
     `*[_type == "resource"] | order(order asc) { title, "href": file.asset->url + "?dl=" }`,
   );
+}
+
+/* ---------------- Legal pages ---------------- */
+
+type LegalRow = {
+  slug: LegalPage["slug"];
+  title: string;
+  summary: string | null;
+  updated: string;
+  body: (PtBlock & { listItem?: string })[];
+};
+
+const toLegalBlocks = (body: LegalRow["body"] = []): LegalBlock[] => {
+  const out: LegalBlock[] = [];
+  for (const b of body) {
+    if (b._type !== "block") continue;
+    const text = (b.children ?? []).map((c) => c.text ?? "").join("");
+    if (!text.trim()) continue;
+    if (b.listItem) {
+      const last = out[out.length - 1];
+      if (last?.type === "ul") last.items.push(text);
+      else out.push({ type: "ul", items: [text] });
+    } else out.push({ type: b.style === "h2" ? "h2" : "p", text });
+  }
+  return out;
+};
+
+export async function getLegalPages(): Promise<LegalPage[]> {
+  if (!client) return legalPages;
+  const rows = await client.fetch<LegalRow[]>(
+    `*[_type == "legalPage" && defined(slug)] { slug, title, summary, updated, body }`,
+  );
+  // A page not yet created in Sanity keeps its starting text.
+  return legalPages.map((fallback) => {
+    const r = rows.find((x) => x.slug === fallback.slug);
+    return r
+      ? {
+          slug: r.slug,
+          title: r.title,
+          summary: r.summary ?? fallback.summary,
+          updated: r.updated,
+          body: toLegalBlocks(r.body),
+        }
+      : fallback;
+  });
 }

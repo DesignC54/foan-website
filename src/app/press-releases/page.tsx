@@ -4,6 +4,9 @@ import { CtaSection } from "@/components/site/cta-section";
 import { ReleaseList } from "@/components/pages/release-list";
 import { getReleases } from "@/lib/cms";
 
+// Refresh from Sanity at most once a minute after a publish.
+export const revalidate = 60;
+
 export const metadata: Metadata = {
   title: "Press Releases",
   description:

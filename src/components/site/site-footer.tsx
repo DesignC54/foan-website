@@ -82,7 +82,14 @@ export function SiteFooter() {
           <p>© 2026 FOAN Group. All rights reserved.</p>
           <ul className="flex flex-wrap gap-x-5 gap-y-2 lg:gap-7">
             {legalLinks.map((l) => (
-              <li key={l}>{l}</li>
+              <li key={l.href}>
+                <SmartLink
+                  href={l.href}
+                  className="underline-offset-4 hover:underline"
+                >
+                  {l.label}
+                </SmartLink>
+              </li>
             ))}
           </ul>
         </div>

@@ -3,6 +3,9 @@ import { Lime, PageHero } from "@/components/site/page-hero";
 import { GalleryGrid } from "@/components/pages/gallery-grid";
 import { getGallery } from "@/lib/cms";
 
+// Refresh from Sanity at most once a minute after a publish.
+export const revalidate = 60;
+
 export const metadata: Metadata = {
   title: "Gallery",
   description:

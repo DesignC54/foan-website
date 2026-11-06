@@ -16,7 +16,9 @@ export async function generateStaticParams() {
   return (await getPosts()).map((p) => ({ slug: p.slug }));
 }
 
-export const dynamicParams = false;
+// New posts published in Sanity get their page on first visit.
+export const dynamicParams = true;
+export const revalidate = 60;
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { slug } = await params;

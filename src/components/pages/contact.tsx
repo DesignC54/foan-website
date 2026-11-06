@@ -8,9 +8,8 @@ import { Button } from "@/components/ui/button";
 // (component set "Accordion / Office" 2366:90).
 
 /* ---------------------------------------------------------------- */
-/* Form. Static hosting has no server yet, so Send opens the visitor's
-   email app with the message filled in (to info@). Swap `send` for the
-   Namecheap PHP endpoint at launch. */
+/* Form: posts to /api/contact (Resend). If email sending isn't configured
+   or fails, it falls back to opening the visitor's email app. */
 
 const field =
   "type-body-m w-full rounded-[8px] border border-white/10 bg-neutral-700 px-4 py-3 text-white placeholder:text-white/35 transition-colors outline-none focus:border-lime-500";
@@ -67,12 +66,12 @@ function Field({
 }
 
 export function ContactForm() {
-  const [sent, setSent] = useState(false);
+  const [state, setState] = useState<
+    "idle" | "sending" | "sent" | "mailto" | "error"
+  >("idle");
+  const [error, setError] = useState("");
 
-  const send = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const f = new FormData(e.currentTarget);
-    const g = (k: string) => String(f.get(k) ?? "").trim();
+  const mailto = (g: (k: string) => string) => {
     const body = [
       g("message"),
       "",
@@ -82,16 +81,70 @@ export function ContactForm() {
       g("phone"),
     ]
       .filter((l, i) => l || i < 3)
-      .join("\n");
+      .join("
+");
     window.location.href = `mailto:info@foangroup.com?subject=${encodeURIComponent(g("subject"))}&body=${encodeURIComponent(body)}`;
-    setSent(true);
+    setState("mailto");
   };
+
+  const send = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const f = new FormData(form);
+    const g = (k: string) => String(f.get(k) ?? "").trim();
+    setState("sending");
+    try {
+      const res = await fetch("/api/contact/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(Object.fromEntries(f)),
+      });
+      if (res.ok) {
+        form.reset();
+        setState("sent");
+        return;
+      }
+      const data = await res.json().catch(() => ({}));
+      if (data.fallback === "mailto") return mailto(g);
+      setError(data.error ?? "Something went wrong. Please try again.");
+      setState("error");
+    } catch {
+      mailto(g);
+    }
+  };
+
+  if (state === "sent") {
+    return (
+      <div
+        data-theme="dark"
+        role="status"
+        className="bg-surface flex flex-col items-center gap-4 rounded-[24px] px-6 py-16 text-center"
+      >
+        <span className="grid size-14 place-items-center rounded-full bg-lime-500 text-black">
+          <svg viewBox="0 0 24 24" className="size-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+            <path d="m5 12.5 4.5 4.5L19 7.5" />
+          </svg>
+        </span>
+        <p className="type-h3 text-white">Message sent</p>
+        <p className="type-body-m max-w-[440px] text-white/70">
+          Thank you. Our team will get back to you within 24 hours.
+        </p>
+        <button
+          type="button"
+          onClick={() => setState("idle")}
+          className="type-label-button mt-2 cursor-pointer text-lime-500 underline-offset-4 hover:underline"
+        >
+          Send another message
+        </button>
+      </div>
+    );
+  }
 
   return (
     <form
       onSubmit={send}
       data-theme="dark"
-      className="bg-surface grid gap-5 rounded-[24px] p-6 md:grid-cols-2 md:p-10 lg:p-12"
+      className="bg-surface relative grid gap-5 rounded-[24px] p-6 md:grid-cols-2 md:p-10 lg:p-12"
     >
       <Field label="Full Name" name="name" required />
       <Field label="Email Address" name="email" type="email" required />
@@ -110,13 +163,34 @@ export function ContactForm() {
         textarea
         className="md:col-span-2"
       />
+      {/* Honeypot for spam bots: hidden from people and screen readers */}
+      <input
+        type="text"
+        name="website"
+        tabIndex={-1}
+        autoComplete="off"
+        aria-hidden
+        className="absolute -left-[9999px] size-px opacity-0"
+      />
       <div className="flex flex-wrap items-center gap-4 md:col-span-2">
-        <button type="submit" className="cursor-pointer rounded-full">
-          <Button label="Send Message" variant="lime" />
+        <button
+          type="submit"
+          disabled={state === "sending"}
+          className="cursor-pointer rounded-full transition-opacity disabled:cursor-wait disabled:opacity-60"
+        >
+          <Button
+            label={state === "sending" ? "Sending…" : "Send Message"}
+            variant="lime"
+          />
         </button>
-        {sent && (
+        {state === "mailto" && (
           <p className="type-body-s text-white/70" role="status">
             Your email app should open with the message ready to send.
+          </p>
+        )}
+        {state === "error" && (
+          <p className="type-body-s text-afrixx-orange" role="alert">
+            {error}
           </p>
         )}
       </div>
