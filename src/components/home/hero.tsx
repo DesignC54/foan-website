@@ -148,10 +148,23 @@ function C54Mark() {
 
 export function Hero() {
   return (
-    <section className="gap-section-gap pb-section nav:pt-[156px] flex flex-col pt-[84px] lg:gap-[60px]">
+    <section className="gap-section-gap pb-section nav:pt-[156px] relative flex flex-col pt-[84px] lg:gap-[60px]">
+      {/* Animated wireframe terrain across the whole hero, kept faint so it
+          reads as texture; fades out towards the stories below. */}
+      <div
+        aria-hidden
+        className="intro-fade pointer-events-none absolute inset-y-0 left-1/2 w-screen -translate-x-1/2"
+        style={{ "--d": "0ms", "--dur": "1800ms" } as React.CSSProperties}
+      >
+        <MeshBackground
+          rows={14}
+          amplitude={28}
+          opacity={[0.05, 0.18]}
+          className="text-primary absolute inset-0 size-full [mask-image:linear-gradient(to_bottom,transparent,#000_10%,#000_60%,transparent_92%)]"
+        />
+      </div>
       {/* Stage */}
       <div className="max-w-frame relative mx-auto flex w-full flex-col items-center gap-6 px-5 pt-6 md:px-10 lg:h-[612px] lg:gap-8 lg:px-[60px] lg:pt-8">
-        {/* Animated wireframe terrain (replaces the static network lines) */}
         {/* Load sequence (CSS, see "Intro" in globals.css):
             mesh + glow fade in → logo settles (zoom out) → text and button
             rise → the four pillars glide onto the stage, then float. */}
@@ -159,7 +172,6 @@ export function Hero() {
           className="intro-fade pointer-events-none absolute inset-0"
           style={{ "--d": "0ms", "--dur": "1600ms" } as React.CSSProperties}
         >
-          <MeshBackground className="text-primary absolute top-0 left-1/2 h-[443px] w-screen max-w-[1600px] -translate-x-1/2 [mask-image:linear-gradient(to_bottom,transparent,#000_18%,#000_72%,transparent)] lg:top-5" />
           {/* eslint-disable-next-line @next/next/no-img-element -- glow */}
           <img
             src="/images/home/hero-glow-m.svg"
