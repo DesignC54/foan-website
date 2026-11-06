@@ -27,11 +27,11 @@ export const metadata: Metadata = {
   // The live domain redirects foangroup.com → www, so links use www.
   metadataBase: new URL("https://www.foangroup.com"),
   title: {
-    default: "FOAN Group",
+    default: "FOAN Group | Media, Technology and Data for Africa",
     template: "%s | FOAN Group",
   },
   description:
-    "A media, technology and data holding company headquartered in Abuja, Nigeria.",
+    "A media, technology and data company that gathers, verifies and interprets information about African markets and builds the platforms that carry it.",
   applicationName: "FOAN Group",
   // Link previews (WhatsApp, LinkedIn, X). The image is app/opengraph-image.jpg;
   // blog posts override it with their own photo.
