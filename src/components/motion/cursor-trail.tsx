@@ -9,9 +9,9 @@ import { useEffect, useRef } from "react";
 //   - The animation loop only runs while there is something to draw.
 
 const GAP = 14; // grid spacing in CSS px
-const RADIUS = 90; // reach of the cursor in CSS px
-const MAX_DOT = 2.4; // largest dot radius
-const DECAY = 0.93; // per-frame fade (~0.6s at 60fps)
+const RADIUS = 80; // reach of the cursor in CSS px
+const MAX_DOT = 2; // largest dot radius
+const DECAY = 0.92; // per-frame fade (~0.5s at 60fps)
 
 export function CursorTrail() {
   const ref = useRef<HTMLCanvasElement>(null);
@@ -141,7 +141,7 @@ export function CursorTrail() {
     <canvas
       ref={ref}
       aria-hidden
-      className="text-accent-text pointer-events-none fixed inset-0 z-[45] size-full opacity-55"
+      className="text-accent-text pointer-events-none fixed inset-0 z-[45] size-full opacity-40"
     />
   );
 }
