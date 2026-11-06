@@ -235,16 +235,19 @@ export function Hero() {
           </span>
         </Link>
 
-        {/* Mobile pillars sit in a row */}
+        {/* Mobile/tablet: three pillars in a centred row (Streams is
+            desktop-only, so the row has room to breathe) */}
         <div
           data-theme="dark"
-          className="relative flex w-full items-center justify-between md:max-w-[560px] lg:hidden"
+          className="relative flex w-full items-center justify-center gap-7 md:gap-12 lg:hidden"
         >
-          {pillars.map((p, i) => (
-            <PillarMotion key={p.label} from="below" delay={0.48 + i * 0.09}>
-              <Hex label={p.label} shape={p.shape} size="sm" />
-            </PillarMotion>
-          ))}
+          {pillars
+            .filter((p) => p.label !== "Streams")
+            .map((p, i) => (
+              <PillarMotion key={p.label} from="below" delay={0.48 + i * 0.09}>
+                <Hex label={p.label} shape={p.shape} size="sm" />
+              </PillarMotion>
+            ))}
         </div>
       </div>
 
