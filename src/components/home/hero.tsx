@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { MeshBackground } from "@/components/motion/mesh-background";
 import { PillarMotion } from "./pillar-motion";
+import { HexOutline } from "./hex-outline";
 import { Carousel } from "@/components/ui/carousel";
 import { MaskIcon } from "@/components/ui/mask-icon";
 import { Tag } from "@/components/ui/tag";
@@ -49,20 +50,21 @@ function Hex({
   label,
   shape,
   size,
+  phase = 0,
 }: {
   label: string;
   shape: string;
   size: "lg" | "sm";
+  phase?: number;
 }) {
   const lg = size === "lg";
   return (
     <div
       className={`relative shrink-0 ${lg ? "h-[152px] w-[136px]" : "h-[91.2px] w-[81.6px]"}`}
     >
-      {/* eslint-disable-next-line @next/next/no-img-element -- hexagon outline */}
-      <img
-        src={`/images/home/${shape}.svg`}
-        alt=""
+      <HexOutline
+        shape={shape}
+        phase={phase}
         className="absolute inset-0 size-full"
       />
       <p
@@ -198,7 +200,12 @@ export function Hero() {
                 delay={0.48 + i * 0.11}
                 floatOffset={i * 0.7}
               >
-                <Hex label={p.label} shape={p.shape} size="lg" />
+                <Hex
+                  label={p.label}
+                  shape={p.shape}
+                  size="lg"
+                  phase={i * 0.27}
+                />
               </PillarMotion>
             </div>
           ))}
@@ -245,7 +252,12 @@ export function Hero() {
             .filter((p) => p.label !== "Streams")
             .map((p, i) => (
               <PillarMotion key={p.label} from="below" delay={0.48 + i * 0.09}>
-                <Hex label={p.label} shape={p.shape} size="sm" />
+                <Hex
+                  label={p.label}
+                  shape={p.shape}
+                  size="sm"
+                  phase={i * 0.33}
+                />
               </PillarMotion>
             ))}
         </div>
