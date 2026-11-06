@@ -68,7 +68,7 @@ export function WhoWeAre() {
 
       <div
         data-reveal-group
-        className="flex flex-col gap-5 lg:grid lg:grid-cols-[300fr_526.67fr_413.33fr] lg:gap-10"
+        className="flex flex-col gap-5 md:grid md:grid-cols-2 lg:grid-cols-[300fr_526.67fr_413.33fr] lg:gap-10"
       >
         {/* Col / 3 */}
         <div className="flex flex-col gap-5 lg:gap-10">
@@ -110,7 +110,7 @@ export function WhoWeAre() {
         <div
           data-theme="dark"
           data-reveal-img
-          className="relative flex h-[480px] flex-col justify-end overflow-clip rounded-sm p-6 lg:h-[735px]"
+          className="relative flex h-[480px] flex-col justify-end overflow-clip rounded-sm p-6 md:h-auto md:min-h-[480px] lg:h-[735px]"
         >
           <Image
             src="/images/home/photo-pyramid.webp"
@@ -126,7 +126,7 @@ export function WhoWeAre() {
         </div>
 
         {/* Col / 4 */}
-        <div className="flex flex-col gap-5 lg:gap-10">
+        <div className="flex flex-col gap-5 md:col-span-2 md:grid md:grid-cols-2 lg:col-span-1 lg:flex lg:gap-10">
           <StatCard stat={stats.hubs5} className="bg-surface lg:p-9" />
           <div
             data-theme="dark"

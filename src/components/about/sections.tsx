@@ -106,14 +106,14 @@ export function SingleView() {
   return (
     <section
       id="single-view"
-      className="max-w-frame gap-section-gap px-gutter py-section mx-auto flex scroll-mt-24 flex-col items-center lg:flex-row lg:gap-24 lg:py-10"
+      className="max-w-frame gap-section-gap px-gutter py-section mx-auto flex scroll-mt-24 flex-col items-center md:flex-row md:gap-10 lg:gap-24 lg:py-10"
     >
       {/* Visual drawn at 520px, scaled to the mobile column (362px) */}
       <div
         data-reveal
-        className="relative size-[362px] shrink-0 lg:size-[520px]"
+        className="relative size-[362px] shrink-0 md:size-[300px] lg:size-[520px]"
       >
-        <div className="absolute top-0 left-0 size-[520px] origin-top-left scale-[0.696] lg:scale-100">
+        <div className="absolute top-0 left-0 size-[520px] origin-top-left scale-[0.696] md:scale-[0.577] lg:scale-100">
           <div className="absolute top-10 left-0 size-[480px] overflow-clip rounded-full">
             <Image
               src="/images/about/towers-blue.webp"
@@ -234,7 +234,10 @@ export function WhereTheGroupStands() {
             separately, so that neither is read as the other.
           </p>
         </div>
-        <ol data-reveal-group className="grid w-full gap-8 lg:grid-cols-3">
+        <ol
+          data-reveal-group
+          className="grid w-full gap-8 md:grid-cols-3 md:gap-6 lg:gap-8"
+        >
           {milestones.map((m) => (
             <li
               key={m.title}
@@ -264,9 +267,9 @@ export function Governance() {
       />
       <div
         data-reveal
-        className="max-w-frame px-gutter relative mx-auto flex flex-col gap-5 py-16 lg:flex-row lg:items-start lg:gap-24 lg:py-[120px]"
+        className="max-w-frame px-gutter relative mx-auto flex flex-col gap-5 py-16 md:flex-row md:items-start md:gap-10 lg:gap-24 lg:py-[120px]"
       >
-        <div className="flex shrink-0 flex-col gap-6 lg:w-[560px]">
+        <div className="flex shrink-0 flex-col gap-6 md:w-[40%] lg:w-[560px]">
           <Tag label="Governance" tone="dark" />
           <h2 className="type-h1 text-black">Governance precedes scale.</h2>
         </div>
@@ -309,7 +312,10 @@ export function VisionMissionValues() {
       <h2 data-reveal className="type-h2 text-primary">
         Vision, mission, and <Lime>values.</Lime>
       </h2>
-      <div data-reveal-group className="grid gap-5 lg:grid-cols-3 lg:gap-6">
+      <div
+        data-reveal-group
+        className="grid gap-5 md:grid-cols-2 lg:grid-cols-3 lg:gap-6 [&>*:last-child]:md:col-span-2 [&>*:last-child]:lg:col-span-1"
+      >
         {cards.map((c) => (
           <div key={c.t} className={glowCard}>
             <p className="type-stat text-primary">{c.t}</p>
@@ -374,15 +380,15 @@ export function SixValues() {
           <li
             key={v.t}
             data-reveal
-            className={`group flex flex-col-reverse gap-4 lg:h-[232px] ${i % 2 ? "lg:flex-row-reverse" : "lg:flex-row"}`}
+            className={`group flex flex-col-reverse gap-4 md:min-h-[220px] lg:h-[232px] ${i % 2 ? "md:flex-row-reverse" : "md:flex-row"}`}
           >
-            <div className="border-subtle bg-surface flex flex-col justify-center gap-3.5 rounded-[20px] border px-7 py-8 lg:w-[760px] lg:shrink-0 lg:px-12 lg:py-10">
+            <div className="border-subtle bg-surface flex flex-col justify-center gap-3.5 rounded-[20px] border px-7 py-8 md:w-[58%] md:shrink-0 lg:w-[760px] lg:px-12 lg:py-10">
               <p className="type-h1 text-primary">{v.t}</p>
               <p className="type-body-m text-secondary">{v.b}</p>
             </div>
             <div
               data-theme="dark"
-              className="border-subtle relative h-[200px] overflow-clip rounded-[20px] border bg-neutral-700 lg:h-auto lg:flex-1"
+              className="border-subtle relative h-[200px] overflow-clip rounded-[20px] border bg-neutral-700 md:h-auto md:flex-1"
             >
               <Image
                 src={`/images/about/value-${v.img}.webp`}
@@ -451,7 +457,7 @@ export function Infrastructure() {
       />
       <div
         data-reveal
-        className={`${glowCard} !gap-6 rounded-lg p-7 lg:flex-row lg:items-center lg:gap-24 lg:p-16`}
+        className={`${glowCard} !gap-6 rounded-lg p-7 md:flex-row md:items-center md:gap-10 md:p-10 lg:gap-24 lg:p-16`}
       >
         <h3 className="type-h1 text-primary lg:w-[520px] lg:shrink-0">
           Held together, not bought <Lime>separately.</Lime>

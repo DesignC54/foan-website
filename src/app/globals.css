@@ -224,6 +224,28 @@
   --size-label-overline: 12px;
 }
 
+/* Tablet + phones in landscape (768–1023px): in-between values so the
+   layout doesn't read as a stretched phone. Not a Figma mode; derived from
+   the Mobile and Desktop values. */
+@media (width >= 48rem) {
+  :root {
+    --layout-gutter: 40px;
+    --layout-section-padding-y: 32px;
+    --layout-section-gap: 40px;
+
+    --size-display-xl: 108px;
+    --size-display: 60px;
+    --size-h1: 50px;
+    --size-h2: 32px;
+    --size-h3: 26px;
+    --size-h4: 22px;
+    --size-stat: 50px;
+    --size-lead: 20px;
+    --size-body-xl: 20px;
+    --size-body-l: 17px;
+  }
+}
+
 @media (width >= 64rem) {
   :root {
     --layout-frame-width: 1440px;
@@ -249,7 +271,9 @@
   --spacing-gutter: var(--layout-gutter);
   --spacing-section: var(--layout-section-padding-y);
   --spacing-section-gap: var(--layout-section-gap);
-  --container-frame: var(--layout-frame-width);
+  /* Content cap. Always 1440px: the Mobile frame width (402) is only the
+     phone artboard, not a limit (it made tablets look like phones). */
+  --container-frame: 90rem;
 }
 
 /* ------------------------------------------------------------------ */
@@ -575,6 +599,16 @@
   width: calc(100% - 56px);
   background: linear-gradient(90deg, transparent, #fcde00 50%, transparent);
   opacity: 0.6;
+}
+/* Tablet: stat bands become a 2×2 grid (dividers only in the desktop row) */
+@media (width >= 48rem) and (width < 64rem) {
+  .stat-band {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .stat-divider {
+    display: none;
+  }
 }
 @media (width >= 64rem) {
   .stat-divider {

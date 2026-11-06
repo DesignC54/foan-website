@@ -83,7 +83,7 @@ function StoryCard({ story }: { story: Story }) {
     <Link
       href="/press-releases/"
       data-theme="dark"
-      className={`relative flex h-[440px] w-[362px] shrink-0 snap-start flex-col justify-between overflow-clip rounded-sm p-6 lg:h-[500px] lg:w-[640px] lg:p-10 ${
+      className={`relative flex h-[440px] w-[362px] shrink-0 snap-start flex-col justify-between overflow-clip rounded-sm p-6 md:h-[480px] md:w-[520px] lg:h-[500px] lg:w-[640px] lg:p-10 ${
         story.image ? "" : "from-c54-navy bg-gradient-to-b to-[#030a24]"
       }`}
     >
@@ -150,7 +150,7 @@ export function Hero() {
   return (
     <section className="gap-section-gap pb-section nav:pt-[156px] flex flex-col pt-[84px] lg:gap-[60px]">
       {/* Stage */}
-      <div className="max-w-frame relative mx-auto flex w-full flex-col items-center gap-6 px-5 pt-6 lg:h-[612px] lg:gap-8 lg:px-[60px] lg:pt-8">
+      <div className="max-w-frame relative mx-auto flex w-full flex-col items-center gap-6 px-5 pt-6 md:px-10 lg:h-[612px] lg:gap-8 lg:px-[60px] lg:pt-8">
         {/* Animated wireframe terrain (replaces the static network lines) */}
         {/* Load sequence (CSS, see "Intro" in globals.css):
             mesh + glow fade in → logo settles (zoom out) → text and button
@@ -198,7 +198,7 @@ export function Hero() {
           alt="FOAN Group"
           width={565.163}
           height={290}
-          className="intro-zoom relative h-[159.5px] w-[310.84px] lg:h-[290px] lg:w-[565.163px]"
+          className="intro-zoom relative h-[159.5px] w-[310.84px] md:h-[230px] md:w-[448px] lg:h-[290px] lg:w-[565.163px]"
           style={{ "--d": "150ms" } as React.CSSProperties}
         />
         <h1
@@ -226,7 +226,7 @@ export function Hero() {
         {/* Mobile pillars sit in a row */}
         <div
           data-theme="dark"
-          className="relative flex w-full items-center justify-between lg:hidden"
+          className="relative flex w-full items-center justify-between md:max-w-[560px] lg:hidden"
         >
           {pillars.map((p, i) => (
             <PillarMotion key={p.label} from="below" delay={0.48 + i * 0.09}>

@@ -55,11 +55,11 @@ export function Chairman() {
     >
       <div
         data-reveal="zoom-in"
-        className="border-subtle bg-surface flex flex-col gap-6 rounded-md border p-4 lg:h-[665px] lg:flex-row lg:items-center lg:gap-14 lg:p-6"
+        className="border-subtle bg-surface flex flex-col gap-6 rounded-md border p-4 md:flex-row md:items-stretch md:gap-8 md:p-5 lg:h-[665px] lg:items-center lg:gap-14 lg:p-6"
       >
         <div
           data-theme="dark"
-          className="relative flex h-[420px] shrink-0 items-end justify-center overflow-clip rounded-sm bg-neutral-700 lg:h-[620px] lg:w-[560px]"
+          className="relative flex h-[420px] shrink-0 items-end justify-center overflow-clip rounded-sm bg-neutral-700 md:h-auto md:min-h-[460px] md:w-[44%] lg:h-[620px] lg:w-[560px]"
         >
           {/* eslint-disable-next-line @next/next/no-img-element -- glow */}
           <img
@@ -119,8 +119,11 @@ export function Reserved() {
         alt=""
         className="pointer-events-none absolute top-0 left-0 h-[1464px] w-[1472px] max-w-none"
       />
-      <div className="max-w-frame px-gutter relative mx-auto flex flex-col gap-10 py-16 lg:flex-row lg:gap-16 lg:py-20">
-        <div data-reveal className="flex shrink-0 flex-col gap-5 lg:w-[420px]">
+      <div className="max-w-frame px-gutter relative mx-auto flex flex-col gap-10 py-16 md:flex-row md:gap-10 lg:gap-16 lg:py-20">
+        <div
+          data-reveal
+          className="flex shrink-0 flex-col gap-5 md:w-[34%] lg:w-[420px]"
+        >
           <Tag label="Reserved responsibilities" tone="dark" />
           <h2 className="type-h2 text-neutral-950">
             What the Board <span className="text-olive-500">decides.</span>
@@ -184,13 +187,13 @@ export function Principles() {
       </div>
       <div
         data-reveal-group="zoom-in"
-        className="grid gap-5 lg:grid-cols-2 lg:gap-6"
+        className="grid gap-5 md:grid-cols-2 lg:gap-6"
       >
         {principles.map((p, i) => (
           <div
             key={p.t}
             className={`border-subtle bg-surface relative flex flex-col gap-6 rounded-sm border p-7 shadow-[inset_-19px_6px_33px_0_rgba(255,122,4,0.4)] lg:h-[260px] lg:p-9 ${
-              i === principles.length - 1 ? "lg:col-span-2" : ""
+              i === principles.length - 1 ? "md:col-span-2" : ""
             }`}
           >
             <p className="type-stat text-primary">{p.t}</p>

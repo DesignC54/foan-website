@@ -73,7 +73,7 @@ export function WhereWeStand() {
           data-theme="dark"
           data-reveal
           data-reveal-img
-          className="relative flex min-h-[351px] flex-col justify-end gap-6 overflow-clip rounded-sm p-7 lg:h-[880px] lg:gap-10 lg:p-[52px]"
+          className="relative flex min-h-[351px] flex-col justify-end gap-6 overflow-clip rounded-sm p-7 md:min-h-[460px] md:p-10 lg:h-[880px] lg:gap-10 lg:p-[52px]"
         >
           <Image
             src="/images/home/photo-towers-b.webp"
@@ -101,7 +101,10 @@ export function WhereWeStand() {
         </div>
 
         {/* Milestones */}
-        <ol data-reveal-group="right" className="flex flex-col gap-5">
+        <ol
+          data-reveal-group="right"
+          className="flex flex-col gap-5 md:grid md:grid-cols-2 lg:flex"
+        >
           {milestones.map((m) => (
             <li
               key={m.title}

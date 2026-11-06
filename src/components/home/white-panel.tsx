@@ -90,7 +90,7 @@ export function WhitePanel() {
           </h2>
           <div
             data-reveal-group
-            className="flex flex-col gap-5 lg:grid lg:grid-cols-[753.33fr_526.67fr] lg:gap-10"
+            className="flex flex-col gap-5 md:grid md:grid-cols-[1.3fr_1fr] lg:grid-cols-[753.33fr_526.67fr] lg:gap-10"
           >
             <div className="flex flex-col gap-5 lg:gap-10">
               {built.map((b) => (
@@ -123,7 +123,7 @@ export function WhitePanel() {
             {/* Chair card */}
             <div
               data-reveal-img
-              className="relative flex h-[540px] flex-col justify-end gap-6 overflow-clip rounded-[16px] bg-black p-6 lg:h-auto lg:p-10"
+              className="relative flex h-[540px] flex-col justify-end gap-6 overflow-clip rounded-[16px] bg-black p-6 md:h-auto md:min-h-[540px] lg:p-10"
             >
               <div className="absolute top-0 left-1/2 h-[551.8px] w-[513.174px] -translate-x-1/2 lg:top-[19px] lg:h-[890px] lg:w-[827.7px]">
                 <Image

@@ -37,7 +37,7 @@ export function Standard() {
         <ol
           data-theme="dark"
           data-reveal-group="zoom-in"
-          className="grid w-full grid-cols-2 gap-5 lg:grid-cols-4 lg:gap-10"
+          className="grid w-full grid-cols-2 gap-5 md:grid-cols-4 lg:gap-10"
         >
           {steps.map((s) => (
             <li
@@ -56,7 +56,7 @@ export function Standard() {
                 alt=""
                 className="absolute inset-0 hidden size-full lg:block"
               />
-              <p className="font-display text-accent-text lg:type-body-xl relative text-[12.54px]">
+              <p className="font-display text-accent-text md:type-body-l lg:type-body-xl relative text-[12.54px]">
                 {s.n}
               </p>
               {/* eslint-disable-next-line @next/next/no-img-element -- step icon */}

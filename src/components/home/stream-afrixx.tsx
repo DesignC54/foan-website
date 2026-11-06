@@ -9,7 +9,7 @@ export function StreamAfrixx() {
     <section className="max-w-frame px-gutter py-section mx-auto w-full">
       <div
         data-reveal-group
-        className="flex flex-col gap-5 lg:grid lg:grid-cols-2 lg:items-center lg:gap-10"
+        className="flex flex-col gap-5 md:grid md:grid-cols-2 md:items-center md:gap-8 lg:gap-10"
       >
         <div className="flex flex-col gap-6 lg:gap-8">
           <div className="flex flex-col gap-5">
