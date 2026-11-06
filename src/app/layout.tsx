@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Outfit, Manrope } from "next/font/google";
 import { SiteNav } from "@/components/site/site-nav";
 import { SiteFooter } from "@/components/site/site-footer";
@@ -24,13 +24,27 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://foangroup.com"),
+  // The live domain redirects foangroup.com → www, so links use www.
+  metadataBase: new URL("https://www.foangroup.com"),
   title: {
     default: "FOAN Group",
     template: "%s | FOAN Group",
   },
   description:
     "A media, technology and data holding company headquartered in Abuja, Nigeria.",
+  applicationName: "FOAN Group",
+  // Link previews (WhatsApp, LinkedIn, X). The image is app/opengraph-image.jpg;
+  // blog posts override it with their own photo.
+  openGraph: {
+    type: "website",
+    siteName: "FOAN Group",
+    locale: "en_NG",
+  },
+  twitter: { card: "summary_large_image", site: "@foangroup" },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0e0f0c",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
