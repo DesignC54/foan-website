@@ -453,7 +453,7 @@ export function SiteNav() {
             </div>
             <Link
               href="/about/"
-              className="group bg-highlight type-label-button text-on-accent nav:flex hidden items-center gap-4 rounded-full py-2 pr-2 pl-6 whitespace-nowrap"
+              className="group bg-accent type-label-button text-on-accent nav:flex hidden items-center gap-4 rounded-full py-2 pr-2 pl-6 whitespace-nowrap"
             >
               About us
               <span className="bg-inverse text-inverse-text grid size-8 place-items-center rounded-full">
