@@ -1,5 +1,6 @@
 import { defineField, defineType } from "sanity";
-import { ImageIcon, PlayIcon } from "@sanity/icons";
+import { ImageIcon } from "@sanity/icons/Image";
+import { PlayIcon } from "@sanity/icons/Play";
 
 const galleryCategories = ["Events", "Leadership", "Community", "Production", "Spaces"];
 

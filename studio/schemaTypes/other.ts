@@ -1,5 +1,7 @@
 import { defineField, defineType } from "sanity";
-import { BulbOutlineIcon, CaseIcon, DownloadIcon } from "@sanity/icons";
+import { BulbOutlineIcon } from "@sanity/icons/BulbOutline";
+import { CaseIcon } from "@sanity/icons/Case";
+import { DownloadIcon } from "@sanity/icons/Download";
 
 // Press release (links to the outside article) → /press-releases/
 export const pressRelease = defineType({

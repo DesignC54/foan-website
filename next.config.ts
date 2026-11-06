@@ -15,6 +15,9 @@ const nextConfig: NextConfig = {
     loader: "custom",
     loaderFile: "./src/lib/image-loader.ts",
   },
+  // Few build workers: each fetches from Sanity, and 15 in parallel ran the
+  // build machine out of memory. The site is small, so 2 is plenty fast.
+  experimental: { cpus: 2 },
   // cacheComponents / partialPrefetching are off: they need a server (PPR)
   // and the build fails with them in export mode.
   turbopack: {

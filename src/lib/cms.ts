@@ -9,7 +9,9 @@ import * as localMedia from "./media";
 import type { Block, Post } from "./posts";
 import type { GalleryItem, VideoTour } from "./media";
 
-const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
+// Project IDs are public. Set NEXT_PUBLIC_SANITY_PROJECT_ID="" to build from
+// the local files instead.
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ?? "8km87koc";
 
 export const cmsEnabled = Boolean(projectId);
 

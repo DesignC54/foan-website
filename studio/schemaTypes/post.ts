@@ -1,5 +1,5 @@
 import { defineArrayMember, defineField, defineType } from "sanity";
-import { DocumentTextIcon } from "@sanity/icons";
+import { DocumentTextIcon } from "@sanity/icons/DocumentText";
 
 // Blog post → /blog/ and /blog/<slug>/
 export const post = defineType({

@@ -11,7 +11,7 @@ import { posts, blogCategories } from "../../src/lib/posts";
 import { releases, roles, resources } from "../../src/lib/content";
 
 const client = getCliClient({ apiVersion: "2026-10-01" });
-const pub = path.resolve(__dirname, "../../public");
+const pub = path.resolve(process.cwd(), "../public"); // run from /studio
 const key = () => Math.random().toString(36).slice(2, 12);
 const slugify = (s: string) =>
   s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 80);
