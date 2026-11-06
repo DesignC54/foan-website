@@ -308,7 +308,7 @@ function MobileMenu({ path, onClose }: { path: string; onClose: () => void }) {
           <Link
             href="/contact/"
             onClick={onClose}
-            className="type-label-button flex w-full items-center gap-4 rounded-full bg-lime-500 py-2 pr-2 pl-6 text-neutral-900"
+            className="type-label-button group inline-flex items-center gap-4 rounded-full bg-lime-500 py-2 pr-2 pl-6 text-neutral-900"
           >
             Contact Us
             {/* eslint-disable-next-line @next/next/no-img-element -- badge */}
