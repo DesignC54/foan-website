@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Lime, PageHero } from "@/components/site/page-hero";
 import { GalleryGrid } from "@/components/pages/gallery-grid";
-import { galleryItems } from "@/lib/media";
+import { getGallery } from "@/lib/cms";
 
 export const metadata: Metadata = {
   title: "Gallery",
@@ -12,7 +12,8 @@ export const metadata: Metadata = {
 // Figma: Gallery — Desktop (2379:5574) / Mobile (2379:5759);
 // empty state (2169:1475 / 2169:1582).
 
-export default function GalleryPage() {
+export default async function GalleryPage() {
+  const galleryItems = await getGallery();
   return (
     <>
       <PageHero

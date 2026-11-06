@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { MaskIcon } from "@/components/ui/mask-icon";
 import { Lime, PageHero } from "@/components/site/page-hero";
-import { resources } from "@/lib/content";
+import { getResources } from "@/lib/cms";
 
 export const metadata: Metadata = {
   title: "Resources",
@@ -11,7 +11,8 @@ export const metadata: Metadata = {
 
 // Figma: Resources — Desktop (2168:1081) / Mobile (2168:1196).
 
-export default function ResourcesPage() {
+export default async function ResourcesPage() {
+  const resources = await getResources();
   return (
     <>
       <PageHero

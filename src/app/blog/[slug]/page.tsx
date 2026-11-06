@@ -5,22 +5,22 @@ import { Button } from "@/components/ui/button";
 import { Tag } from "@/components/ui/tag";
 import { Lime } from "@/components/site/page-hero";
 import { PhotoGrid } from "@/components/pages/photo-grid";
-import { posts } from "@/lib/content";
+import { getPosts } from "@/lib/cms";
 
 // Figma: Blog article — Desktop (4015:5150) / Mobile (4015:5500).
 // Header, hero photo, 860px body column, supporting visuals, more from the blog.
 
 type Params = { params: Promise<{ slug: string }> };
 
-export function generateStaticParams() {
-  return posts.map((p) => ({ slug: p.slug }));
+export async function generateStaticParams() {
+  return (await getPosts()).map((p) => ({ slug: p.slug }));
 }
 
 export const dynamicParams = false;
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { slug } = await params;
-  const post = posts.find((p) => p.slug === slug);
+  const post = (await getPosts()).find((p) => p.slug === slug);
   if (!post) return {};
   return {
     title: post.title,
@@ -33,6 +33,7 @@ const d = (ms: number) => ({ "--d": `${ms}ms` }) as React.CSSProperties;
 
 export default async function ArticlePage({ params }: Params) {
   const { slug } = await params;
+  const posts = await getPosts();
   const post = posts.find((p) => p.slug === slug);
   if (!post) notFound();
   const more = posts.filter((p) => p.slug !== slug);

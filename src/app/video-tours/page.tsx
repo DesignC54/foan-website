@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { VideoTours } from "@/components/pages/video-tours";
-import { videoTours } from "@/lib/media";
+import { getVideoTours } from "@/lib/cms";
 
 export const metadata: Metadata = {
   title: "Video Tours",
@@ -11,6 +11,7 @@ export const metadata: Metadata = {
 // Figma: Video Tours — Desktop (2380:5739) / Mobile (2380:5966);
 // empty state (2169:1670).
 
-export default function VideoToursPage() {
+export default async function VideoToursPage() {
+  const videoTours = await getVideoTours();
   return <VideoTours videos={videoTours} />;
 }

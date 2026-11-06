@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Tag } from "@/components/ui/tag";
-import { blogCategories, type Post } from "@/lib/content";
+import type { Post } from "@/lib/content";
 
 // Figma: CSR — Desktop (2168:744): category pills, post card, archive sidebar
 // and the yellow "Need updates fast?" callout. Filters work client-side.
@@ -13,9 +13,11 @@ const ALL = "All posts";
 
 export function BlogList({
   posts,
+  categories,
   initial,
 }: {
   posts: Post[];
+  categories: string[];
   initial: string;
 }) {
   const [cat, setCat] = useState(initial);
@@ -25,7 +27,7 @@ export function BlogList({
       : posts.filter((p) => p.categories.includes(c)).length;
   const shown =
     cat === ALL ? posts : posts.filter((p) => p.categories.includes(cat));
-  const cats = [ALL, ...blogCategories];
+  const cats = [ALL, ...categories];
 
   return (
     <>

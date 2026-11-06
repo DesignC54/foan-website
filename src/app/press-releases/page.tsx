@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { PageHero } from "@/components/site/page-hero";
 import { CtaSection } from "@/components/site/cta-section";
 import { ReleaseList } from "@/components/pages/release-list";
-import { releases } from "@/lib/content";
+import { getReleases } from "@/lib/cms";
 
 export const metadata: Metadata = {
   title: "Press Releases",
@@ -12,7 +12,8 @@ export const metadata: Metadata = {
 
 // Figma: Press Releases — Desktop (2167:687) / Mobile (2167:883).
 
-export default function PressReleasesPage() {
+export default async function PressReleasesPage() {
+  const releases = await getReleases();
   return (
     <>
       <PageHero

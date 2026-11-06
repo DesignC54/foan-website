@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Tag } from "@/components/ui/tag";
 import { CtaSection } from "@/components/site/cta-section";
 import { BlogList } from "@/components/pages/blog-list";
-import { posts } from "@/lib/content";
+import { getBlogCategories, getPosts } from "@/lib/cms";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -13,7 +13,11 @@ export const metadata: Metadata = {
 // Figma: CSR — Desktop (2168:744) / Mobile (2168:921). The nav's Impact › Blog
 // and the footer's CSR both land here, opened on the CSR category as designed.
 
-export default function BlogPage() {
+export default async function BlogPage() {
+  const [posts, categories] = await Promise.all([
+    getPosts(),
+    getBlogCategories(),
+  ]);
   return (
     <>
       <section className="relative overflow-clip">
@@ -30,7 +34,11 @@ export default function BlogPage() {
           >
             <Tag label="Blog" />
           </div>
-          <BlogList posts={posts} initial="Corporate Social Responsibility" />
+          <BlogList
+            posts={posts}
+            categories={categories}
+            initial="Corporate Social Responsibility"
+          />
         </div>
       </section>
       <CtaSection

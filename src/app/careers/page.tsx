@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Tag } from "@/components/ui/tag";
 import { Lime, PageHero } from "@/components/site/page-hero";
 import { CtaSection } from "@/components/site/cta-section";
-import { roles } from "@/lib/content";
+import { getRoles } from "@/lib/cms";
 
 export const metadata: Metadata = {
   title: "Careers",
@@ -14,7 +14,8 @@ export const metadata: Metadata = {
 
 // Figma: Careers — Desktop (2167:360) / Mobile (2167:532).
 
-export default function CareersPage() {
+export default async function CareersPage() {
+  const roles = await getRoles();
   return (
     <>
       <PageHero
