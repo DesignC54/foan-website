@@ -24,6 +24,7 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://foangroup.com"),
   title: {
     default: "FOAN Group",
     template: "%s | FOAN Group",

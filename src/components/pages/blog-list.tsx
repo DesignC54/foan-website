@@ -20,8 +20,11 @@ export function BlogList({
 }) {
   const [cat, setCat] = useState(initial);
   const count = (c: string) =>
-    c === ALL ? posts.length : posts.filter((p) => p.category === c).length;
-  const shown = cat === ALL ? posts : posts.filter((p) => p.category === cat);
+    c === ALL
+      ? posts.length
+      : posts.filter((p) => p.categories.includes(c)).length;
+  const shown =
+    cat === ALL ? posts : posts.filter((p) => p.categories.includes(cat));
   const cats = [ALL, ...blogCategories];
 
   return (
@@ -83,13 +86,18 @@ export function BlogList({
                   sizes="(min-width: 1024px) 890px, 100vw"
                   className="object-cover object-[50%_35%] transition-transform duration-700 group-hover:scale-[1.03]"
                 />
-                <Tag label={p.category} className="absolute top-5 left-5" />
+                <Tag
+                  label={p.categories.join(", ")}
+                  className="absolute top-5 left-5"
+                />
               </div>
               <div className="flex flex-col gap-4 p-6 lg:p-9">
                 <p className="type-label-overline flex flex-wrap gap-2.5">
                   <span className="text-secondary">{p.date}</span>
                   <span className="text-tertiary">·</span>
-                  <span className="text-accent-text">{p.category}</span>
+                  <span className="text-accent-text">
+                    {p.categories.join(", ")}
+                  </span>
                 </p>
                 <h2 className="type-h3 text-primary">{p.title}</h2>
                 <p className="type-body-m text-secondary">{p.excerpt}</p>

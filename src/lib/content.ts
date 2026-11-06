@@ -116,32 +116,4 @@ export const resources: Resource[] = [
   },
 ];
 
-export type Post = {
-  slug: string;
-  title: string;
-  date: string;
-  category: string;
-  excerpt: string;
-  image: string;
-};
-
-export const posts: Post[] = [
-  {
-    slug: "foan-group-csr-supporting-environmental-awareness-through-city-nature-challenge-kano-2025",
-    title:
-      "FOAN Group CSR: Supporting Environmental Awareness Through City Nature Challenge Kano 2025",
-    date: "May 6, 2025",
-    category: "Corporate Social Responsibility",
-    excerpt:
-      "As part of our Corporate Social Responsibility (CSR) commitment to environmental sustainability and community engagement, FOAN Group is proud to sponsor the City Nature Challenge Kano 2025. This initiative empowers ci...",
-    image: "/images/pages/csr-kano-2025.webp",
-  },
-];
-
-export const blogCategories = [
-  "Technology",
-  "Business",
-  "Design",
-  "Lifestyle",
-  "Corporate Social Responsibility",
-];
+export * from "./posts";

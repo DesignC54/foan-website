@@ -18,16 +18,18 @@ export function ScrollReveal() {
     const root = document.documentElement;
     root.classList.add("js-reveal");
 
-    document
-      .querySelectorAll<HTMLElement>("[data-reveal-group]")
-      .forEach((group) => {
-        Array.from(group.children).forEach((child, i) => {
-          const el = child as HTMLElement;
-          if (!el.hasAttribute("data-reveal"))
-            el.setAttribute("data-reveal", group.dataset.revealGroup ?? "");
-          el.style.setProperty("--reveal-delay", `${i * 80}ms`);
+    const prep = () =>
+      document
+        .querySelectorAll<HTMLElement>("[data-reveal-group]")
+        .forEach((group) => {
+          Array.from(group.children).forEach((child, i) => {
+            const el = child as HTMLElement;
+            if (!el.hasAttribute("data-reveal"))
+              el.setAttribute("data-reveal", group.dataset.revealGroup ?? "");
+            el.style.setProperty("--reveal-delay", `${i * 80}ms`);
+          });
         });
-      });
+    prep();
 
     const io = new IntersectionObserver(
       (entries) => {
@@ -40,12 +42,30 @@ export function ScrollReveal() {
       },
       { rootMargin: "0px 0px -8% 0px", threshold: 0.12 },
     );
-    document
-      .querySelectorAll(
-        "[data-reveal]:not(.is-in), [data-reveal-img]:not(.is-in)",
-      )
-      .forEach((el) => io.observe(el));
-    return () => io.disconnect();
+    const watch = () =>
+      document
+        .querySelectorAll(
+          "[data-reveal]:not(.is-in), [data-reveal-img]:not(.is-in)",
+        )
+        .forEach((el) => io.observe(el));
+    watch();
+
+    // Content that mounts later (filters, Load more, tabs) reveals too.
+    let queued = false;
+    const mo = new MutationObserver(() => {
+      if (queued) return;
+      queued = true;
+      requestAnimationFrame(() => {
+        queued = false;
+        prep();
+        watch();
+      });
+    });
+    mo.observe(document.body, { childList: true, subtree: true });
+    return () => {
+      io.disconnect();
+      mo.disconnect();
+    };
   }, [path]);
 
   return null;
