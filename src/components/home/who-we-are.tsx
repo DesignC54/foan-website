@@ -15,15 +15,20 @@ type Stat = { icon: string; value: string; title: string; body: string };
 const hubsBody =
   "Global Streaming Hub in Uyo, production in Nairobi, commercial in Johannesburg, annex commercial in Lagos and a continental hub in Senegal.";
 
-const stats: Record<"hubs" | "countries" | "hubs5", Stat> = {
-  hubs: { icon: "icon-building", value: "3", title: "Hubs", body: hubsBody },
+const stats: Record<"offices" | "countries" | "hubs", Stat> = {
+  offices: {
+    icon: "icon-building",
+    value: "3",
+    title: "Offices",
+    body: "Head office in Abuja, annex office at Dakkada Tower in Uyo, and an international office in Dubai.",
+  },
   countries: {
     icon: "icon-globe",
     value: "5",
     title: "Countries",
     body: "Nigeria, Kenya, South Africa, Senegal and the UAE — with editorial reach across the continent through owned platforms and syndication.",
   },
-  hubs5: { icon: "icon-broadcast", value: "5", title: "Hubs", body: hubsBody },
+  hubs: { icon: "icon-broadcast", value: "5", title: "Hubs", body: hubsBody },
 };
 
 function StatCard({
@@ -72,7 +77,7 @@ export function WhoWeAre() {
       >
         {/* Col / 3 */}
         <div className="flex flex-col gap-5 lg:gap-10">
-          <StatCard stat={stats.hubs} className="bg-surface lg:p-9" />
+          <StatCard stat={stats.offices} className="bg-surface lg:p-9" />
           <Link
             href="/video-tours/"
             className="group bg-surface flex flex-1 flex-col gap-7 overflow-clip rounded-sm pb-7"
@@ -127,7 +132,7 @@ export function WhoWeAre() {
 
         {/* Col / 4 */}
         <div className="flex flex-col gap-5 md:col-span-2 md:grid md:grid-cols-2 lg:col-span-1 lg:flex lg:gap-10">
-          <StatCard stat={stats.hubs5} className="bg-surface lg:p-9" />
+          <StatCard stat={stats.hubs} className="bg-surface lg:p-9" />
           <div
             data-theme="dark"
             className="bg-highlight relative flex flex-1 flex-col gap-6 overflow-clip rounded-sm px-7 pt-10 pb-8"

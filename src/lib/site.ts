@@ -110,6 +110,7 @@ export const footerColumns = [
     links: [
       { label: "Investor Relations", href: "/about/" },
       { label: "Newsroom", href: "/press-releases/" },
+      { label: "Resources", href: "/resources/" },
       { label: "Contact", href: "/contact/" },
       { label: "Media Enquiries", href: "mailto:media@foangroup.com" },
     ],
