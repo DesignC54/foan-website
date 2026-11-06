@@ -3,22 +3,17 @@ import Link from "next/link";
 import type { BoardMember } from "@/lib/board";
 
 // Figma: Card / Board member (2216:2565). Portrait, glass name panel and a
-// "+" that opens the member's bio (on the Leadership page). Photo card, so it
-// is pinned Dark: the glass panel and white type read on any portrait.
+// "+" that opens the member's bio. Photo card, so it is pinned Dark: the glass
+// panel and white type read on any portrait.
+// With onOpen it's a button (Leadership page, opens the modal); otherwise a
+// link to the member on the Leadership page.
 
-export function BoardCard({
-  member,
-  href,
-}: {
-  member: BoardMember;
-  href?: string;
-}) {
+const cardClass =
+  "group relative flex h-[440px] w-full flex-col justify-end overflow-clip rounded-sm border border-subtle bg-surface-raised p-3 text-left lg:h-[520px] cursor-pointer";
+
+function Inner({ member }: { member: BoardMember }) {
   return (
-    <Link
-      href={href ?? `/leadership/#${member.slug}`}
-      data-theme="dark"
-      className="group border-subtle bg-surface-raised relative flex h-[440px] flex-col justify-end overflow-clip rounded-sm border p-3 lg:h-[520px]"
-    >
+    <>
       <Image
         src={member.photo}
         alt={member.name}
@@ -38,10 +33,41 @@ export function BoardCard({
           alt=""
           width={56}
           height={56}
-          className="size-14 shrink-0 rounded-full transition-colors duration-300 group-hover:bg-lime-500 group-hover:invert"
+          className="size-14 shrink-0 rounded-full transition-[background-color,transform] duration-300 group-hover:rotate-90 group-hover:bg-lime-500 group-hover:invert"
         />
         <span className="sr-only">Read {member.name}&rsquo;s biography</span>
       </div>
+    </>
+  );
+}
+
+export function BoardCard({
+  member,
+  href,
+  onOpen,
+}: {
+  member: BoardMember;
+  href?: string;
+  onOpen?: () => void;
+}) {
+  if (onOpen)
+    return (
+      <button
+        type="button"
+        data-theme="dark"
+        onClick={onOpen}
+        className={cardClass}
+      >
+        <Inner member={member} />
+      </button>
+    );
+  return (
+    <Link
+      href={href ?? `/leadership/#${member.slug}`}
+      data-theme="dark"
+      className={cardClass}
+    >
+      <Inner member={member} />
     </Link>
   );
 }
