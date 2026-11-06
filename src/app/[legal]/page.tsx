@@ -62,7 +62,7 @@ export default async function LegalPage({ params }: Params) {
           ) : b.type === "ul" ? (
             <ul
               key={i}
-              className="type-body-m text-secondary flex list-disc flex-col gap-2 pl-5 marker:text-accent-text"
+              className="type-body-m text-secondary marker:text-accent-text flex list-disc flex-col gap-2 pl-5"
             >
               {b.items.map((it, j) => (
                 <li key={j}>{it}</li>

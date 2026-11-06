@@ -81,8 +81,7 @@ export function ContactForm() {
       g("phone"),
     ]
       .filter((l, i) => l || i < 3)
-      .join("
-");
+      .join("\n");
     window.location.href = `mailto:info@foangroup.com?subject=${encodeURIComponent(g("subject"))}&body=${encodeURIComponent(body)}`;
     setState("mailto");
   };
@@ -121,7 +120,16 @@ export function ContactForm() {
         className="bg-surface flex flex-col items-center gap-4 rounded-[24px] px-6 py-16 text-center"
       >
         <span className="grid size-14 place-items-center rounded-full bg-lime-500 text-black">
-          <svg viewBox="0 0 24 24" className="size-6" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+          <svg
+            viewBox="0 0 24 24"
+            className="size-6"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden
+          >
             <path d="m5 12.5 4.5 4.5L19 7.5" />
           </svg>
         </span>
