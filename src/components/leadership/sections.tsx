@@ -17,7 +17,7 @@ export function LeadershipHero() {
       <img
         src="/images/about/hero-glow.svg"
         alt=""
-        className="intro-fade light:opacity-40 pointer-events-none absolute top-[-260px] left-1/2 h-[700px] w-[1200px] max-w-none -translate-x-1/2"
+        className="intro-fade light:opacity-40 pointer-events-none absolute top-[-260px] left-1/2 h-[700px] w-[1200px] max-w-none -translate-x-1/2 [mask-image:linear-gradient(to_bottom,#000_50%,transparent_92%)]"
       />
       <div className="max-w-frame px-gutter nav:pt-[184px] relative mx-auto flex flex-col items-center gap-6 pt-[96px] pb-16 text-center lg:gap-12 lg:pb-[112px]">
         <div
