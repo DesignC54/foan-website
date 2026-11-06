@@ -9,6 +9,7 @@ export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Resources",
+  alternates: { canonical: "/resources/" },
   description: "Download our latest documents, reports, and other materials.",
 };
 

@@ -11,6 +11,7 @@ export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Careers",
+  alternates: { canonical: "/careers/" },
   description:
     "We are building with people who choose global standards over local comfort. Every role is measured against the best in the world.",
 };

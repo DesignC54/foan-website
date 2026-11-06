@@ -7,6 +7,7 @@ export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Video Tours",
+  alternates: { canonical: "/video-tours/" },
   description:
     "Step through FOAN Group moments, spaces, and stories in a curated reel.",
 };

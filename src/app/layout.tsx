@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { SiteJsonLd } from "@/components/seo/json-ld";
 import { Outfit, Manrope } from "next/font/google";
 import { SiteNav } from "@/components/site/site-nav";
 import { SiteFooter } from "@/components/site/site-footer";
@@ -57,6 +58,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <head>
         <ThemeScript />
+        <SiteJsonLd />
       </head>
       <body className="flex min-h-dvh flex-col">
         <SiteNav />

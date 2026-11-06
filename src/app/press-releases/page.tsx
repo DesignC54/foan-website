@@ -9,6 +9,7 @@ export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Press Releases",
+  alternates: { canonical: "/press-releases/" },
   description:
     "Follow FOAN Group announcements, partnerships, milestones, and company news in one concise feed.",
 };

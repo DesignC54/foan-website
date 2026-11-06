@@ -11,6 +11,7 @@ import {
 
 export const metadata: Metadata = {
   title: "Contact",
+  alternates: { canonical: "/contact/" },
   description:
     "For partnerships, press, investment, and general enquiries. Offices in Abuja, Uyo, and Dubai.",
 };

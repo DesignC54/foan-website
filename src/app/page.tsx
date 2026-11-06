@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Hero } from "@/components/home/hero";
 import { WhoWeAre } from "@/components/home/who-we-are";
 import { WhereWeStand } from "@/components/home/where-we-stand";
@@ -8,6 +9,10 @@ import { Standard } from "@/components/home/standard";
 
 // Figma: Home — Desktop (2109:9879) / Home — Mobile (2109:9381).
 // Sections sit 60px apart on desktop and 20px on mobile, as in the frames.
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 export default function HomePage() {
   return (

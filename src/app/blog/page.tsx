@@ -9,6 +9,7 @@ export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Blog",
+  alternates: { canonical: "/blog/" },
   description:
     "Company news, commentary and Corporate Social Responsibility updates from FOAN Group.",
 };

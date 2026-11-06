@@ -6,6 +6,7 @@ import { Tag } from "@/components/ui/tag";
 import { Lime } from "@/components/site/page-hero";
 import { PhotoGrid } from "@/components/pages/photo-grid";
 import { getPosts } from "@/lib/cms";
+import { JsonLd, SITE } from "@/components/seo/json-ld";
 
 // Figma: Blog article — Desktop (4015:5150) / Mobile (4015:5500).
 // Header, hero photo, 860px body column, supporting visuals, more from the blog.
@@ -27,7 +28,13 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   return {
     title: post.title,
     description: post.excerpt,
-    openGraph: { images: [post.image] },
+    alternates: { canonical: `/blog/${post.slug}/` },
+    openGraph: {
+      type: "article",
+      siteName: "FOAN Group",
+      images: [post.image],
+      publishedTime: new Date(`${post.date} 12:00 UTC`).toISOString(),
+    },
   };
 }
 
@@ -40,8 +47,31 @@ export default async function ArticlePage({ params }: Params) {
   if (!post) notFound();
   const more = posts.filter((p) => p.slug !== slug);
 
+  const image = post.image.startsWith("http")
+    ? post.image
+    : `${SITE}${post.image}`;
+
   return (
     <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          headline: post.title,
+          description: post.excerpt,
+          image: [image],
+          datePublished: new Date(`${post.date} 12:00 UTC`).toISOString(),
+          url: `${SITE}/blog/${post.slug}/`,
+          mainEntityOfPage: `${SITE}/blog/${post.slug}/`,
+          articleSection: post.categories,
+          author: {
+            "@type": "Organization",
+            name: "FOAN Group",
+            url: `${SITE}/`,
+          },
+          publisher: { "@id": `${SITE}/#organization` },
+        }}
+      />
       {/* Article header */}
       <section className="max-w-frame px-gutter nav:pt-[168px] mx-auto flex flex-col gap-6 pt-[96px] md:pt-[120px] lg:gap-8">
         <div className="intro-up" style={d(50)}>

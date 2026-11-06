@@ -19,7 +19,13 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { legal } = await params;
   const page = (await getLegalPages()).find((p) => p.slug === legal);
-  return page ? { title: page.title, description: page.summary } : {};
+  return page
+    ? {
+        title: page.title,
+        description: page.summary,
+        alternates: { canonical: `/${page.slug}/` },
+      }
+    : {};
 }
 
 const d = (ms: number) => ({ "--d": `${ms}ms` }) as React.CSSProperties;

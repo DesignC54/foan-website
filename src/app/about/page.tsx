@@ -16,6 +16,7 @@ import { CtaSection } from "@/components/site/cta-section";
 
 export const metadata: Metadata = {
   title: "About",
+  alternates: { canonical: "/about/" },
   description:
     "FOAN Group is a media, technology and data holding company headquartered in Abuja, built to occupy the layer between Africa's information and the value its attention generates.",
 };

@@ -11,6 +11,7 @@ import { CtaSection } from "@/components/site/cta-section";
 
 export const metadata: Metadata = {
   title: "Leadership",
+  alternates: { canonical: "/leadership/" },
   description:
     "The FOAN Group Board of Directors, inaugurated on 31 March 2026 under the chairmanship of Professor Pat Utomi: the forum in which strategy, capital, risk and appointments are decided.",
 };
