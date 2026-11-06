@@ -206,8 +206,8 @@ export function Hero() {
           style={{ "--d": "380ms" } as React.CSSProperties}
         >
           A media, technology and data company that gathers, verifies and
-          interprets information about African markets — and builds the
-          platforms that carry it.
+          interprets information about African markets and builds the platforms
+          that carry it.
         </h1>
         <Link
           href="/about/"
