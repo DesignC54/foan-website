@@ -16,7 +16,7 @@ export const houses: House[] = [
     key: "c54",
     name: "C54News",
     meta: ["News & documentary", "Group company"],
-    href: "https://c54news.com",
+    href: "https://c54news.tv",
   },
   {
     key: "f1",
