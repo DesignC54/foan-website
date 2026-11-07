@@ -1,10 +1,11 @@
 import Image from "next/image";
+import { C54Logo } from "@/components/site/c54-logo";
 
 // Figma: Home › Where we stand (2109:10063 desktop / 2109:9553 mobile).
 
 type Milestone =
   | { date: string; title: string; thumb: "photo"; image: string }
-  | { date: string; title: string; thumb: "c54"; tone: "navy" | "red" };
+  | { date: string; title: string; thumb: "c54" };
 
 const milestones: Milestone[] = [
   {
@@ -17,13 +18,11 @@ const milestones: Milestone[] = [
     date: "14 Oct 2026",
     title: "C54News shadow launch",
     thumb: "c54",
-    tone: "navy",
   },
   {
     date: "Aug 2027",
     title: "C54News commercial launch",
     thumb: "c54",
-    tone: "red",
   },
   {
     date: "31 Mar 2026",
@@ -33,33 +32,14 @@ const milestones: Milestone[] = [
   },
 ];
 
-/** C54 thumbnail, drawn at desktop size (180px) and scaled to 140px on mobile. */
-function C54Thumb({ tone }: { tone: "navy" | "red" }) {
-  const navy = tone === "navy";
+/** C54 thumbnail: the C54NEWS logo fitted on its brand blue (140px mobile, 180px desktop). */
+function C54Thumb() {
   return (
-    <div
-      className={`relative h-full w-[140px] shrink-0 overflow-clip bg-gradient-to-b lg:w-[180px] ${
-        navy ? "from-c54-navy to-[#030a24]" : "from-c54-red to-[#7a0f14]"
-      }`}
-    >
-      <div className="absolute top-0 left-0 h-[205px] w-[180px] origin-top-left scale-[0.7778] lg:scale-100">
-        {/* eslint-disable-next-line @next/next/no-img-element -- decorative rings */}
-        <img
-          src="/images/home/milestone-rings.svg"
-          alt=""
-          className="absolute inset-0 size-full"
-        />
-        <p className="font-display absolute top-[39px] left-[30px] text-[68px] leading-normal font-semibold tracking-[-2.72px] text-white">
-          C54
-        </p>
-        <div
-          className={`absolute top-[121px] left-16 flex h-[17px] w-[52px] items-center justify-center rounded-xs ${navy ? "bg-c54-red" : "bg-c54-navy"}`}
-        >
-          <span className="font-display text-[9px] font-semibold tracking-[1.26px] text-white">
-            NEWS
-          </span>
-        </div>
-      </div>
+    <div className="bg-c54-blue relative h-full w-[140px] shrink-0 overflow-clip lg:w-[180px]">
+      <C54Logo
+        className="inset-x-0 top-1/2 h-[92.8%] -translate-y-1/2"
+        sizes="180px"
+      />
     </div>
   );
 }
@@ -121,7 +101,7 @@ export function WhereWeStand() {
                   />
                 </div>
               ) : (
-                <C54Thumb tone={m.tone} />
+                <C54Thumb />
               )}
               <div className="flex min-w-0 flex-1 flex-col justify-center gap-3 py-6 pr-5 lg:justify-start lg:gap-5 lg:py-9 lg:pr-7">
                 <p className="type-body-s text-accent-text">{m.date}</p>

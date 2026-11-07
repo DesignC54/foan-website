@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { HouseKey } from "@/lib/site";
+import { C54Logo } from "./c54-logo";
 
 // Company logo tiles from Nav / Dropdown (lg, 168×146.72) and
 // Nav / Mobile menu (sm, 64×55.893). Measurements are from Figma.
@@ -18,43 +19,11 @@ export function HouseTile({ house, size }: { house: HouseKey; size: Size }) {
 
   if (house === "c54") {
     return (
-      <div className={`${base} from-c54-navy bg-gradient-to-b to-[#030a24]`}>
-        {lg && (
-          // eslint-disable-next-line @next/next/no-img-element -- decorative SVG
-          <img
-            src="/images/site/c54-broadcast-rings.svg"
-            alt=""
-            width={156.8}
-            height={156.8}
-            className="absolute top-[-10.64px] left-1/2 size-[156.8px] max-w-none -translate-x-1/2"
-          />
-        )}
-        <p
-          className={`font-display absolute leading-normal font-semibold whitespace-nowrap text-white ${
-            lg
-              ? "top-[32.48px] left-[calc(50%-49.56px)] text-[56px] tracking-[-2.24px]"
-              : "top-[7.89px] left-[calc(50%-23.36px)] text-[26.453px] tracking-[-1.0581px]"
-          }`}
-        >
-          C54
-        </p>
-        <div
-          className={`bg-c54-red absolute left-1/2 -translate-x-1/2 overflow-clip ${
-            lg
-              ? "top-[106.4px] h-[16.128px] w-[50.4px] rounded-[2.016px]"
-              : "top-[41.6px] h-[8.192px] w-[25.6px] rounded-[1.024px]"
-          }`}
-        >
-          <p
-            className={`font-display absolute left-0 w-full text-center leading-normal font-semibold text-white ${
-              lg
-                ? "top-[3.02px] text-[8.064px] tracking-[1.129px]"
-                : "top-[1.54px] text-[4.096px] tracking-[0.5734px]"
-            }`}
-          >
-            NEWS
-          </p>
-        </div>
+      <div className={`${base} bg-c54-blue`}>
+        <C54Logo
+          className="inset-x-0 top-1/2 h-[92.8%] -translate-y-1/2"
+          sizes={lg ? "168px" : "64px"}
+        />
       </div>
     );
   }

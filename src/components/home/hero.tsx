@@ -6,6 +6,7 @@ import { HexOutline } from "./hex-outline";
 import { Carousel } from "@/components/ui/carousel";
 import { MaskIcon } from "@/components/ui/mask-icon";
 import { Tag } from "@/components/ui/tag";
+import { C54Logo } from "@/components/site/c54-logo";
 
 // Figma: Home — Desktop › Hero (2109:9880) / Home — Mobile › Hero (2109:9382).
 
@@ -86,7 +87,7 @@ function StoryCard({ story }: { story: Story }) {
       href="/press-releases/"
       data-theme="dark"
       className={`relative flex h-[440px] w-[362px] shrink-0 snap-start flex-col justify-between overflow-clip rounded-sm p-6 md:h-[480px] md:w-[520px] lg:h-[500px] lg:w-[640px] lg:p-10 ${
-        story.image ? "" : "from-c54-navy bg-gradient-to-b to-[#030a24]"
+        story.image ? "" : "bg-c54-blue"
       }`}
     >
       {story.image ? (
@@ -126,24 +127,20 @@ function StoryCard({ story }: { story: Story }) {
   );
 }
 
-/** The large "C54 NEWS" mark on the brand story card. */
+/** The C54NEWS logo on the brand story card (Figma: Story card / 4). */
 function C54Mark() {
   return (
     <>
+      <C54Logo
+        className="inset-x-0 top-1/2 h-[105.3%] -translate-y-1/2"
+        sizes="(min-width: 1024px) 640px, (min-width: 768px) 520px, 362px"
+      />
       {/* eslint-disable-next-line @next/next/no-img-element -- decorative rings */}
       <img
         src="/images/home/story-rings.svg"
         alt=""
         className="absolute top-[10px] left-1/2 h-[300px] w-[372px] max-w-none -translate-x-1/2 lg:top-0 lg:h-[500px] lg:w-[620px]"
       />
-      <p className="font-display absolute top-[26.8px] left-[calc(50%-110.5px)] text-[125.4px] leading-normal font-semibold tracking-[-5.016px] text-white lg:top-[28px] lg:left-[calc(50%-184px)] lg:text-[209px] lg:tracking-[-8.36px]">
-        C54
-      </p>
-      <div className="bg-c54-red absolute top-[178px] left-1/2 flex h-[31.8px] w-24 -translate-x-1/2 items-center justify-center rounded-[2.4px] lg:top-[280px] lg:h-[53px] lg:w-40 lg:rounded-xs">
-        <span className="font-display text-[16.2px] font-semibold tracking-[2.268px] text-white lg:text-[27px] lg:tracking-[3.78px]">
-          NEWS
-        </span>
-      </div>
     </>
   );
 }

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { SmartLink } from "@/components/ui/smart-link";
 import { Tag } from "@/components/ui/tag";
+import { C54Logo } from "@/components/site/c54-logo";
 import { houses, type HouseKey } from "@/lib/site";
 
 // Figma: Home › Five houses (2109:10113 desktop / 2109:9603 mobile).
@@ -150,22 +151,14 @@ export function FiveHouses() {
           {/* C54News feature */}
           <SmartLink
             href={href("c54")}
-            className="from-c54-navy relative flex h-[540px] flex-col justify-end overflow-clip rounded-[16px] bg-gradient-to-b to-[#030a24] p-4 lg:h-auto lg:p-5"
+            className="bg-c54-blue relative flex h-[540px] flex-col justify-end overflow-clip rounded-[16px] p-4 lg:h-auto lg:p-5"
           >
-            {/* eslint-disable-next-line @next/next/no-img-element -- broadcast rings */}
-            <img
-              src="/images/home/houses-rings.svg"
-              alt=""
-              className="absolute top-3.5 left-1/2 size-[336px] max-w-none -translate-x-1/2 lg:top-10 lg:size-[560px]"
+            {/* Logo sits above the caption on mobile; on desktop it fills the
+                card behind the caption, as in Figma (Thumb 4135:13281). */}
+            <C54Logo
+              className="inset-x-4 top-4 h-[298px] lg:inset-x-auto lg:top-[10.65%] lg:left-[4.69%] lg:h-[76.5%] lg:w-[90.69%]"
+              sizes="(min-width: 1024px) 580px, 330px"
             />
-            <p className="font-display absolute top-20 left-[calc(50%-106px)] text-[120px] leading-normal font-semibold tracking-[-4.8px] text-white lg:top-[150px] lg:left-[calc(50%-176px)] lg:text-[200px] lg:tracking-[-8px]">
-              C54
-            </p>
-            <div className="bg-c54-red absolute top-[227.6px] left-1/2 flex h-[28.8px] w-[90px] -translate-x-1/2 items-center justify-center rounded-[3.6px] lg:top-[396px] lg:h-12 lg:w-[150px] lg:rounded-[6px]">
-              <span className="font-display text-[14.4px] font-semibold tracking-[2.016px] text-white lg:text-2xl lg:tracking-[3.36px]">
-                NEWS
-              </span>
-            </div>
             <div className="bg-surface relative flex flex-col gap-5 rounded-[12px] p-6 lg:gap-7 lg:px-10 lg:pt-9 lg:pb-10">
               <div className="flex flex-col gap-3">
                 <p className="type-h3 text-primary">C54News</p>
