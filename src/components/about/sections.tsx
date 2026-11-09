@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Tag } from "@/components/ui/tag";
 import { BoardCard } from "@/components/site/board-card";
@@ -82,9 +83,9 @@ export function AboutHero() {
               className="object-cover object-[50%_30%]"
             />
           </div>
-          <a
-            href="#single-view"
-            aria-label="Scroll to read more"
+          <Link
+            href="/contact/"
+            aria-label="Contact us"
             className="absolute top-1/2 left-0 size-[66px] -translate-x-1/2 -translate-y-1/2 transition-transform hover:scale-105 lg:top-[137px] lg:left-[-70px] lg:size-[163px] lg:translate-x-0 lg:translate-y-0"
           >
             {/* eslint-disable-next-line @next/next/no-img-element -- glass arrow */}
@@ -93,7 +94,7 @@ export function AboutHero() {
               alt=""
               className="size-full"
             />
-          </a>
+          </Link>
         </div>
       </div>
     </section>
